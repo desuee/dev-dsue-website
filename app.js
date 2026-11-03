@@ -51,7 +51,7 @@ const CHANGELOG = [
 const PROJECTS = [
   { id: 'mediagrab', kind: 'app', img: 'img/proj-mediagrab.webp', name: 'MediaGrab', link: '#mediagrab',
     de: 'Desktop-App: YouTube und SoundCloud als MP3, MP4 oder WAV speichern. Windows und macOS.', en: 'Desktop app: save YouTube and SoundCloud as MP3, MP4 or WAV. Windows and macOS.', tags: ['Electron', 'yt-dlp', 'FFmpeg'] },
-  { id: 'uploader', kind: 'app', img: 'img/proj-uploader.webp', name: 'Workshop Uploader', link: '#uploader',
+  { id: 'uploader', kind: 'app', img: 'img/proj-uploader.webp', name: 'Steam Workshop Uploader', link: '#uploader',
     de: 'Mods für Puck mit Steam-Anmeldung in den Steam Workshop hochladen – ohne Konsole.', en: 'Upload Puck mods to the Steam Workshop with your Steam sign-in – no console.', tags: ['Electron', 'Steamworks'] },
   { id: 'broadcast', kind: 'mod', img: 'img/proj-broadcast.webp', name: 'EPS Broadcast', link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3832358279',
     de: 'TV-Grafiken für Puck: Scorebug, Tor-Animation, LED-Show, Replay-Kameras, Torhymnen, Trikots und Stadionsprecher.', en: 'TV graphics for Puck: score bug, goal animation, LED show, replay cameras, goal horns, jerseys and stadium announcer.', tags: ['C#', 'Unity', 'Mod'] },
@@ -137,7 +137,7 @@ document.addEventListener('click', e => { const b = e.target.closest('[data-pj]'
 let clFilter = 'all', clMore = false;
 function drawChangelog() {
   const box = document.getElementById('cl-list'); if (!box) return;
-  const name = { mediagrab: 'MediaGrab', uploader: 'Workshop Uploader' };
+  const name = { mediagrab: 'MediaGrab', uploader: 'Steam Workshop Uploader' };
   const icon = { mediagrab: 'img/mediagrab-icon.png', uploader: 'img/uploader-icon.png' };
   const tag = { new: [L === 'de' ? 'Neu' : 'New', 'new'], imp: [L === 'de' ? 'Verbessert' : 'Improved', 'imp'], fix: [L === 'de' ? 'Behoben' : 'Fixed', 'fix'] };
   const fmt = d => { const p = d.split('-'); return p.length < 3 ? new Date(+p[0], +p[1] - 1).toLocaleDateString(L, { month: 'short', year: 'numeric' }) : new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(L, { day: 'numeric', month: 'short', year: 'numeric' }); };
