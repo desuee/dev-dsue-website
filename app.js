@@ -46,6 +46,22 @@ const CHANGELOG = [
     ['new', 'Drag & Drop für Dateien und Ordner, neue Mods mit Titel, Bild und Sichtbarkeit', 'Drag & drop for files and folders, new mods with title, image and visibility'],
   ] },
 ];
+
+// Projekte: Reihenfolge = Reihenfolge auf der Seite
+const PROJECTS = [
+  { id: 'mediagrab', kind: 'app', img: 'img/proj-mediagrab.webp', name: 'MediaGrab', link: '#mediagrab',
+    de: 'Desktop-App: YouTube und SoundCloud als MP3, MP4 oder WAV speichern. Windows und macOS.', en: 'Desktop app: save YouTube and SoundCloud as MP3, MP4 or WAV. Windows and macOS.', tags: ['Electron', 'yt-dlp', 'FFmpeg'] },
+  { id: 'uploader', kind: 'app', img: 'img/proj-uploader.webp', name: 'Workshop Uploader', link: '#uploader',
+    de: 'Mods für Puck mit Steam-Anmeldung in den Steam Workshop hochladen – ohne Konsole.', en: 'Upload Puck mods to the Steam Workshop with your Steam sign-in – no console.', tags: ['Electron', 'Steamworks'] },
+  { id: 'broadcast', kind: 'mod', img: 'img/proj-broadcast.webp', name: 'EPS Broadcast', link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3832358279',
+    de: 'TV-Grafiken für Puck: Scorebug, Tor-Animation, LED-Show, Replay-Kameras, Torhymnen, Trikots und Stadionsprecher.', en: 'TV graphics for Puck: score bug, goal animation, LED show, replay cameras, goal horns, jerseys and stadium announcer.', tags: ['C#', 'Unity', 'Mod'] },
+  { id: 'overlay', kind: 'mod', img: 'img/proj-overlay.webp', name: 'EPS Overlay', link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3828433090',
+    de: 'Live-Shotmap und Schussstatistik für Puck, einstellbar pro Spieler und Team.', en: 'Live shot map and shot stats for Puck, configurable per player and team.', tags: ['C#', 'Unity', 'Mod'] },
+  { id: 'admin', kind: 'mod', img: 'img/proj-admin.webp', name: 'EPS Admin', link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3832677288',
+    de: 'Admin-Menü für Puck-Server: Spieler verwalten, Bans, Spielsteuerung und Admin-Tools.', en: 'Admin menu for Puck servers: manage players, bans, game control and admin tools.', tags: ['C#', 'Unity', 'Server'] },
+  { id: 'eps', kind: 'web', img: 'img/proj-eps-web.webp', name: 'European Puck Series', link: 'https://europeanpuckseries.com',
+    de: 'Liga-Website mit Tabellen, Spielplan, Spielerstatistiken, Fantasy-Preisen und Admin-Bereich.', en: 'League website with standings, schedule, player stats, fantasy prices and an admin area.', tags: ['Node.js', 'Website', 'Railway'] },
+];
 // ============================================================
 
 const url = file => `https://github.com/${GITHUB}/${REPO}/releases/latest/download/${file}`;
@@ -101,6 +117,23 @@ function drawDownloads() {
   v('mg-ver', 'mediagrab'); v('wu-ver', 'uploader');
 }
 
+let pjFilter = 'all';
+function drawProjects() {
+  const grid = document.getElementById('pj-grid'); if (!grid) return;
+  const K = { all: L === 'de' ? 'Alle' : 'All', app: 'Apps', mod: L === 'de' ? 'Puck-Mods' : 'Puck mods', web: 'Websites' };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  document.getElementById('pj-tabs').innerHTML = ['all', 'app', 'mod', 'web'].map(k => `<button data-pj="${k}" class="${k === pjFilter ? 'on' : ''}">${K[k]}</button>`).join('');
+  const more = { app: L === 'de' ? 'Zur App' : 'View app', mod: L === 'de' ? 'Im Steam Workshop' : 'On Steam Workshop', web: L === 'de' ? 'Website öffnen' : 'Open website' };
+  grid.innerHTML = PROJECTS.filter(p => pjFilter === 'all' || p.kind === pjFilter).map(p => {
+    const ext = /^https?:/.test(p.link);
+    return `<a class="pj ${p.kind}" href="${esc(p.link)}"${ext ? ' target="_blank" rel="noopener"' : ''}>
+      <div class="pj-img"><img src="${esc(p.img)}" alt="" loading="lazy"><span class="pj-kind">${K[p.kind]}</span></div>
+      <div class="pj-body"><h3>${esc(p.name)}</h3><p>${esc(L === 'de' ? p.de : p.en)}</p>
+      <div class="pj-foot"><div class="pj-tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div><span class="pj-go">${more[p.kind]} ${ext ? '↗' : '→'}</span></div></div></a>`;
+  }).join('');
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-pj]'); if (b) { pjFilter = b.dataset.pj; drawProjects(); } });
+
 let clFilter = 'all', clMore = false;
 function drawChangelog() {
   const box = document.getElementById('cl-list'); if (!box) return;
@@ -132,6 +165,7 @@ function applyLang() {
   for (const b of document.querySelectorAll('[data-lang]')) b.classList.toggle('on', b.dataset.lang === L);
   drawDownloads();
   drawChangelog();
+  drawProjects();
 }
 document.querySelector('.lang')?.addEventListener('click', e => {
   const b = e.target.closest('[data-lang]'); if (!b) return;

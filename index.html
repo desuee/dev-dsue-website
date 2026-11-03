@@ -8,13 +8,14 @@
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <script>try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.dataset.theme="dark"}catch(e){}</script>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <header class="nav">
   <div class="in">
     <a class="logo" href="#top"><img class="mark" src="img/logo.png" alt="">Desue</a>
     <nav>
+      <a href="#projects" data-de="Projekte" data-en="Projects">Projekte</a>
       <a href="#mediagrab">MediaGrab</a>
       <a href="#uploader">Workshop Uploader</a>
       <a href="#install" data-de="Installation" data-en="Install">Installation</a>
@@ -36,6 +37,14 @@
       <a href="#mediagrab" class="app-chip"><img src="img/mediagrab-icon.png" alt=""><span><b>MediaGrab</b><small>Windows · macOS</small></span></a>
       <a href="#uploader" class="app-chip"><img src="img/uploader-icon.png" alt=""><span><b>Workshop Uploader</b><small>Windows</small></span></a>
     </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="in projects" id="projects">
+    <h2 data-de="Projekte" data-en="Projects">Projekte</h2>
+    <p class="sub" data-de="Apps, Mods und Websites, die ich gebaut habe." data-en="Apps, mods and websites I have built.">Apps, Mods und Websites, die ich gebaut habe.</p>
+    <div class="pj-tabs" id="pj-tabs"></div>
+    <div class="pj-grid" id="pj-grid"></div>
   </section>
 
   <!-- MediaGrab -->
@@ -130,7 +139,7 @@
     <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
   </div>
 </footer>
-<script src="theme.js?v=3"></script>
-<script src="app.js?v=3"></script>
+<script src="theme.js?v=4"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>
