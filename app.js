@@ -22,19 +22,29 @@ const APPS = {
 };
 
 // Changelog: neueste Einträge oben. Neue Version = neuen Block oben einfügen.
+// Jede Änderung: [Art, Deutsch, Englisch] – Art: 'new' (Neu), 'imp' (Verbessert), 'fix' (Behoben)
 const CHANGELOG = [
-  { app: 'mediagrab', version: '1.0.1', date: '2026-11-03',
-    de: ['SoundCloud-Links werden erkannt (MP3 oder WAV)', 'Ganze SoundCloud-Sets und YouTube-Playlists in einem Rutsch, durchnummeriert in einem eigenen Ordner', 'Anzeige „Track 3/12“ beim Laden von Sets', 'Schnellerer Start der App'],
-    en: ['SoundCloud links are recognised (MP3 or WAV)', 'Whole SoundCloud sets and YouTube playlists in one go, numbered in their own folder', '“Track 3/12” progress while downloading sets', 'Faster app start'] },
-  { app: 'mediagrab', version: '1.0.0', date: '2026-11-03',
-    de: ['Erste Version für Windows und macOS (Apple Silicon und Intel)', 'MP3 mit 320 kbps, Cover und Titel', 'MP4 bis 4K, bevorzugt 1080p in H.264', 'WAV verlustfrei', 'Mehrere Downloads gleichzeitig, Engine aktualisiert sich selbst'],
-    en: ['First release for Windows and macOS (Apple Silicon and Intel)', 'MP3 at 320 kbps with cover and title', 'MP4 up to 4K, prefers 1080p H.264', 'Lossless WAV', 'Several downloads at once, the engine updates itself'] },
-  { app: 'uploader', version: '1.0.2', date: '2026-11',
-    de: ['Sprachauswahl: Deutsch, Englisch, Tschechisch', 'Eigene Mods werden zuverlässiger geladen, auch wenn Steam kurz nicht antwortet'],
-    en: ['Language picker: German, English, Czech', 'Your mods load more reliably, even when Steam briefly does not answer'] },
-  { app: 'uploader', version: '1.0.0', date: '2026-11',
-    de: ['Erste Version: Mods für Puck mit Steam-Anmeldung in den Workshop hochladen', 'Drag & Drop für Dateien und Ordner, neue Mods mit Titel, Bild und Sichtbarkeit'],
-    en: ['First release: upload Puck mods to the Workshop with your Steam sign-in', 'Drag & drop for files and folders, new mods with title, image and visibility'] },
+  { app: 'mediagrab', version: '1.0.1', date: '2026-11-03', items: [
+    ['new', 'SoundCloud-Links werden erkannt – Download als MP3 oder WAV', 'SoundCloud links are recognised – download as MP3 or WAV'],
+    ['new', 'Ganze Sets und Playlists in einem Rutsch, durchnummeriert in einem eigenen Ordner', 'Whole sets and playlists in one go, numbered in their own folder'],
+    ['imp', 'Fortschritt „Track 3/12“ beim Laden von Sets', '“Track 3/12” progress while downloading sets'],
+    ['imp', 'Die App startet schneller', 'The app starts faster'],
+  ] },
+  { app: 'mediagrab', version: '1.0.0', date: '2026-11-03', items: [
+    ['new', 'Erste Version für Windows und macOS (Apple Silicon und Intel)', 'First release for Windows and macOS (Apple Silicon and Intel)'],
+    ['new', 'MP3 mit 320 kbps inklusive Cover und Titel', 'MP3 at 320 kbps with cover and title'],
+    ['new', 'MP4 bis 4K, bevorzugt 1080p in H.264', 'MP4 up to 4K, prefers 1080p H.264'],
+    ['new', 'WAV verlustfrei', 'Lossless WAV'],
+    ['new', 'Mehrere Downloads gleichzeitig, die Engine aktualisiert sich selbst', 'Several downloads at once, the engine updates itself'],
+  ] },
+  { app: 'uploader', version: '1.0.2', date: '2026-11', items: [
+    ['new', 'Sprachauswahl: Deutsch, Englisch, Tschechisch', 'Language picker: German, English, Czech'],
+    ['fix', 'Eigene Mods laden zuverlässig, auch wenn Steam kurz nicht antwortet', 'Your mods load reliably, even when Steam briefly does not answer'],
+  ] },
+  { app: 'uploader', version: '1.0.0', date: '2026-11', items: [
+    ['new', 'Erste Version: Mods für Puck mit Steam-Anmeldung in den Workshop hochladen', 'First release: upload Puck mods to the Workshop with your Steam sign-in'],
+    ['new', 'Drag & Drop für Dateien und Ordner, neue Mods mit Titel, Bild und Sichtbarkeit', 'Drag & drop for files and folders, new mods with title, image and visibility'],
+  ] },
 ];
 // ============================================================
 
@@ -91,20 +101,29 @@ function drawDownloads() {
   v('mg-ver', 'mediagrab'); v('wu-ver', 'uploader');
 }
 
-let clFilter = 'all';
+let clFilter = 'all', clMore = false;
 function drawChangelog() {
   const box = document.getElementById('cl-list'); if (!box) return;
   const name = { mediagrab: 'MediaGrab', uploader: 'Workshop Uploader' };
   const icon = { mediagrab: 'img/mediagrab-icon.png', uploader: 'img/uploader-icon.png' };
-  const fmt = d => { const p = d.split('-'); if (p.length < 3) return new Date(+p[0], +p[1] - 1).toLocaleDateString(L, { month: 'long', year: 'numeric' }); return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(L, { day: 'numeric', month: 'long', year: 'numeric' }); };
+  const tag = { new: [L === 'de' ? 'Neu' : 'New', 'new'], imp: [L === 'de' ? 'Verbessert' : 'Improved', 'imp'], fix: [L === 'de' ? 'Behoben' : 'Fixed', 'fix'] };
+  const fmt = d => { const p = d.split('-'); return p.length < 3 ? new Date(+p[0], +p[1] - 1).toLocaleDateString(L, { month: 'short', year: 'numeric' }) : new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(L, { day: 'numeric', month: 'short', year: 'numeric' }); };
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const latest = {};
-  box.innerHTML = CHANGELOG.filter(e => clFilter === 'all' || e.app === clFilter).map(e => {
-    const isNew = !latest[e.app]; latest[e.app] = true;
-    return `<article class="cl"><div class="cl-head"><img src="${icon[e.app]}" alt=""><b>${name[e.app]} ${esc(e.version)}</b>${isNew ? `<span class="cl-new">${L === 'de' ? 'Aktuell' : 'Latest'}</span>` : ''}<time>${fmt(e.date)}</time></div><ul>${(e[L] || e.de).map(x => `<li>${esc(x)}</li>`).join('')}</ul></article>`;
-  }).join('');
+  const list = CHANGELOG.filter(e => clFilter === 'all' || e.app === clFilter);
+  const seen = {};
+  const shown = clMore ? list : list.slice(0, 3);
+  box.innerHTML = shown.map(e => {
+    const latest = !seen[e.app]; seen[e.app] = true;
+    const items = e.items.map(([k, de, en]) => `<li><span class="tg ${tag[k][1]}">${tag[k][0]}</span><span>${esc(L === 'de' ? de : en)}</span></li>`).join('');
+    return `<article class="tl ${e.app}${latest ? ' latest' : ''}">
+      <div class="tl-when"><time>${fmt(e.date)}</time></div>
+      <div class="tl-dot"></div>
+      <div class="tl-card"><header><img src="${icon[e.app]}" alt=""><div><span class="tl-app">${name[e.app]}</span><b>v${esc(e.version)}</b></div>${latest ? `<span class="tl-latest">${L === 'de' ? 'Aktuell' : 'Latest'}</span>` : ''}</header><ul>${items}</ul></div>
+    </article>`;
+  }).join('') + (list.length > 3 ? `<button class="tl-more" id="cl-more">${clMore ? (L === 'de' ? 'Weniger anzeigen' : 'Show less') : (L === 'de' ? `Ältere Versionen anzeigen (${list.length - 3})` : `Show older versions (${list.length - 3})`)}</button>` : '');
   for (const b of document.querySelectorAll('[data-cl]')) b.classList.toggle('on', b.dataset.cl === clFilter);
 }
+document.addEventListener('click', e => { if (e.target.closest('#cl-more')) { clMore = !clMore; drawChangelog(); } });
 document.addEventListener('click', e => { const b = e.target.closest('[data-cl]'); if (b) { clFilter = b.dataset.cl; drawChangelog(); } });
 
 function applyLang() {
