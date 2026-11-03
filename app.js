@@ -20,6 +20,22 @@ const APPS = {
     style: 'wu',
   },
 };
+
+// Changelog: neueste Einträge oben. Neue Version = neuen Block oben einfügen.
+const CHANGELOG = [
+  { app: 'mediagrab', version: '1.0.1', date: '2026-11-03',
+    de: ['SoundCloud-Links werden erkannt (MP3 oder WAV)', 'Ganze SoundCloud-Sets und YouTube-Playlists in einem Rutsch, durchnummeriert in einem eigenen Ordner', 'Anzeige „Track 3/12“ beim Laden von Sets', 'Schnellerer Start der App'],
+    en: ['SoundCloud links are recognised (MP3 or WAV)', 'Whole SoundCloud sets and YouTube playlists in one go, numbered in their own folder', '“Track 3/12” progress while downloading sets', 'Faster app start'] },
+  { app: 'mediagrab', version: '1.0.0', date: '2026-11-03',
+    de: ['Erste Version für Windows und macOS (Apple Silicon und Intel)', 'MP3 mit 320 kbps, Cover und Titel', 'MP4 bis 4K, bevorzugt 1080p in H.264', 'WAV verlustfrei', 'Mehrere Downloads gleichzeitig, Engine aktualisiert sich selbst'],
+    en: ['First release for Windows and macOS (Apple Silicon and Intel)', 'MP3 at 320 kbps with cover and title', 'MP4 up to 4K, prefers 1080p H.264', 'Lossless WAV', 'Several downloads at once, the engine updates itself'] },
+  { app: 'uploader', version: '1.0.2', date: '2026-11',
+    de: ['Sprachauswahl: Deutsch, Englisch, Tschechisch', 'Eigene Mods werden zuverlässiger geladen, auch wenn Steam kurz nicht antwortet'],
+    en: ['Language picker: German, English, Czech', 'Your mods load more reliably, even when Steam briefly does not answer'] },
+  { app: 'uploader', version: '1.0.0', date: '2026-11',
+    de: ['Erste Version: Mods für Puck mit Steam-Anmeldung in den Workshop hochladen', 'Drag & Drop für Dateien und Ordner, neue Mods mit Titel, Bild und Sichtbarkeit'],
+    en: ['First release: upload Puck mods to the Workshop with your Steam sign-in', 'Drag & drop for files and folders, new mods with title, image and visibility'] },
+];
 // ============================================================
 
 const url = file => `https://github.com/${GITHUB}/${REPO}/releases/latest/download/${file}`;
@@ -75,11 +91,28 @@ function drawDownloads() {
   v('mg-ver', 'mediagrab'); v('wu-ver', 'uploader');
 }
 
+let clFilter = 'all';
+function drawChangelog() {
+  const box = document.getElementById('cl-list'); if (!box) return;
+  const name = { mediagrab: 'MediaGrab', uploader: 'Workshop Uploader' };
+  const icon = { mediagrab: 'img/mediagrab-icon.png', uploader: 'img/uploader-icon.png' };
+  const fmt = d => { const p = d.split('-'); if (p.length < 3) return new Date(+p[0], +p[1] - 1).toLocaleDateString(L, { month: 'long', year: 'numeric' }); return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(L, { day: 'numeric', month: 'long', year: 'numeric' }); };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const latest = {};
+  box.innerHTML = CHANGELOG.filter(e => clFilter === 'all' || e.app === clFilter).map(e => {
+    const isNew = !latest[e.app]; latest[e.app] = true;
+    return `<article class="cl"><div class="cl-head"><img src="${icon[e.app]}" alt=""><b>${name[e.app]} ${esc(e.version)}</b>${isNew ? `<span class="cl-new">${L === 'de' ? 'Aktuell' : 'Latest'}</span>` : ''}<time>${fmt(e.date)}</time></div><ul>${(e[L] || e.de).map(x => `<li>${esc(x)}</li>`).join('')}</ul></article>`;
+  }).join('');
+  for (const b of document.querySelectorAll('[data-cl]')) b.classList.toggle('on', b.dataset.cl === clFilter);
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-cl]'); if (b) { clFilter = b.dataset.cl; drawChangelog(); } });
+
 function applyLang() {
   document.documentElement.lang = L;
   for (const el of document.querySelectorAll('[data-de]')) el.innerHTML = el.dataset[L] || el.dataset.de;
   for (const b of document.querySelectorAll('[data-lang]')) b.classList.toggle('on', b.dataset.lang === L);
   drawDownloads();
+  drawChangelog();
 }
 document.querySelector('.lang')?.addEventListener('click', e => {
   const b = e.target.closest('[data-lang]'); if (!b) return;
