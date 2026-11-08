@@ -5,7 +5,7 @@
 //  darum müssen die Dateien dort immer genau so heißen wie unten.
 // ============================================================
 const GITHUB = 'desuee';
-const REPO = 'dsue-ebsite';
+const REPO = 'dev-dsue-website';
 const APPS = {
   mediagrab: {
     version: '1.0.1',
