@@ -49,6 +49,8 @@ const CHANGELOG = [
 
 // Projekte: Reihenfolge = Reihenfolge auf der Seite
 const PROJECTS = [
+  { id: 'aera', kind: 'game', img: 'img/proj-aera.webp', name: 'AERA', link: 'aera.html',
+    de: 'Fluglotsen-Spiel über Deutschland: Anflug Köln/Bonn und Frankfurt, Langen und Rhein Radar – mit Funk auf Deutsch und Englisch. Early Access.', en: 'Air traffic control game over Germany: approach Cologne/Bonn and Frankfurt, Langen and Rhein Radar – with radio in German and English. Early Access.', tags: ['Game', 'ATC', 'Early Access'] },
   { id: 'mediagrab', kind: 'app', img: 'img/proj-mediagrab.webp', name: 'MediaGrab', link: '#mediagrab',
     de: 'Desktop-App: YouTube und SoundCloud als MP3, MP4 oder WAV speichern. Windows und macOS.', en: 'Desktop app: save YouTube and SoundCloud as MP3, MP4 or WAV. Windows and macOS.', tags: ['Electron', 'yt-dlp', 'FFmpeg'] },
   { id: 'uploader', kind: 'app', img: 'img/proj-uploader.webp', name: 'Steam Workshop Uploader', link: '#uploader',
@@ -120,10 +122,10 @@ function drawDownloads() {
 let pjFilter = 'all';
 function drawProjects() {
   const grid = document.getElementById('pj-grid'); if (!grid) return;
-  const K = { all: L === 'de' ? 'Alle' : 'All', app: 'Apps', mod: L === 'de' ? 'Puck-Mods' : 'Puck mods', web: 'Websites' };
+  const K = { all: L === 'de' ? 'Alle' : 'All', game: L === 'de' ? 'Spiele' : 'Games', app: 'Apps', mod: L === 'de' ? 'Puck-Mods' : 'Puck mods', web: 'Websites' };
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  document.getElementById('pj-tabs').innerHTML = ['all', 'app', 'mod', 'web'].map(k => `<button data-pj="${k}" class="${k === pjFilter ? 'on' : ''}">${K[k]}</button>`).join('');
-  const more = { app: L === 'de' ? 'Zur App' : 'View app', mod: L === 'de' ? 'Im Steam Workshop' : 'On Steam Workshop', web: L === 'de' ? 'Website öffnen' : 'Open website' };
+  document.getElementById('pj-tabs').innerHTML = ['all', 'game', 'app', 'mod', 'web'].map(k => `<button data-pj="${k}" class="${k === pjFilter ? 'on' : ''}">${K[k]}</button>`).join('');
+  const more = { game: L === 'de' ? 'Zur Spielseite' : 'View game', app: L === 'de' ? 'Zur App' : 'View app', mod: L === 'de' ? 'Im Steam Workshop' : 'On Steam Workshop', web: L === 'de' ? 'Website öffnen' : 'Open website' };
   grid.innerHTML = PROJECTS.filter(p => pjFilter === 'all' || p.kind === pjFilter).map(p => {
     const ext = /^https?:/.test(p.link);
     return `<a class="pj ${p.kind}" href="${esc(p.link)}"${ext ? ' target="_blank" rel="noopener"' : ''}>

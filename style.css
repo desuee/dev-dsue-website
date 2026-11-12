@@ -211,3 +211,8 @@ details a,.legal a{color:var(--link)}
 .pj.app .pj-go{background:var(--mg);-webkit-background-clip:text;background-clip:text;color:transparent}
 @media (max-width:1000px){.pj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.pj-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* AERA link */
+.pj.game .pj-go{color:#1e88e5}
+.pj.game .pj-img{background:#07111f}
+.nav nav a.nav-aera{font-weight:700;color:#1e88e5}

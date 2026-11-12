@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AERA – Airspace & Enroute Radar Authority · ATC-Spiel von Desue</title>
+<meta name="description" content="AERA ist ein Fluglotsen-Spiel über Deutschland: Anflug Köln/Bonn und Frankfurt, Langen Radar und Rhein Radar – mit echten Fixes, echten Airlines, Live-METAR und Funk auf Deutsch und Englisch. Early Access.">
+<meta name="theme-color" content="#07111f">
+<meta property="og:title" content="AERA – Control the Skies">
+<meta property="og:description" content="Fluglotsen-Spiel über Deutschland: EDDK, EDDF, Langen Radar, Rhein Radar. Early Access.">
+<meta property="og:image" content="https://www.dev-dsue.de/img/proj-aera.webp">
+<link rel="icon" type="image/png" href="img/aera-favicon.png">
+<link rel="apple-touch-icon" href="img/aera-touch-icon.png">
+<link rel="stylesheet" href="aera.css?v=1">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="in">
+    <a class="brand" href="#top"><img src="img/aera-icon.png" alt=""><span><b>AERA</b><small>Airspace &amp; Enroute Radar Authority</small></span></a>
+    <nav>
+      <a href="#sectors" data-de="Sektoren" data-en="Sectors">Sektoren</a>
+      <a href="#features" data-de="Features" data-en="Features">Features</a>
+      <a href="#radio" data-de="Funk" data-en="Radio">Funk</a>
+      <a href="#screens" data-de="Screenshots" data-en="Screenshots">Screenshots</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="lang"><button data-lang="de">DE</button><button data-lang="en">EN</button></div>
+    <a class="back" href="index.html" title="dev-dsue.de"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><span>Desue</span></a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="scope" aria-hidden="true"><div class="sweep"></div></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="in hero-in">
+      <span class="status"><i></i><span data-de="Early Access · in Entwicklung" data-en="Early Access · in development">Early Access · in Entwicklung</span></span>
+      <h1><img class="hero-logo" src="img/aera-logo.webp" alt="AERA – Airspace & Enroute Radar Authority" width="1400" height="544"></h1>
+      <div class="rule"></div>
+      <p class="motto">Control the Skies</p>
+      <p class="lead" data-de="Anflug- und Streckenkontrolle über Deutschland. Echte Fixes, echte Airlines, Live-Wetter – und Piloten, die dir auf Deutsch oder Englisch antworten." data-en="Approach and en-route control over Germany. Real fixes, real airlines, live weather – and pilots who answer you in German or English.">Anflug- und Streckenkontrolle über Deutschland. Echte Fixes, echte Airlines, Live-Wetter – und Piloten, die dir auf Deutsch oder Englisch antworten.</p>
+      <div class="cta">
+        <a class="btn primary beta" href="mailto:kontakt@dev-dsue.de?subject=AERA%20Beta"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-de="Beta anfragen" data-en="Request beta">Beta anfragen</span></a>
+        <a class="btn ghost" href="#screens"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg><span data-de="Screenshots ansehen" data-en="View screenshots">Screenshots ansehen</span></a>
+      </div>
+    </div>
+
+    <div class="in">
+      <figure class="hero-shot">
+        <div class="frame">
+          <img src="img/aera-eddk-de.webp" alt="AERA Radarbildschirm: Köln Arrival mit ILS 31R" width="1456" height="814">
+        </div>
+        <span class="tag t1"><b>LDG 31R</b> · Live-METAR</span>
+        <span class="tag t2"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span data-de="Halten zum Sprechen" data-en="Hold to talk">Halten zum Sprechen</span></span>
+        <span class="tag t3 warn">⚠ <span data-de="Staffelung 3.0 NM" data-en="Separation 3.0 NM">Staffelung 3.0 NM</span></span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- DATA STRIP -->
+  <div class="strip" aria-label="Kurzinfo">
+    <div class="strip-track">
+      <span><b>4</b> <em data-de="Sektoren" data-en="sectors">Sektoren</em></span><span class="sl">//</span>
+      <span><b>EDDK</b> · <b>EDDF</b></span><span class="sl">//</span>
+      <span><b>FL000–400</b></span><span class="sl">//</span>
+      <span><b>DE</b> · <b>EN</b> <em data-de="mit Stimmen" data-en="with voices">mit Stimmen</em></span><span class="sl">//</span>
+      <span><b>Live-METAR</b></span><span class="sl">//</span>
+      <span><b>Push-to-Talk</b></span><span class="sl">//</span>
+      <span class="mono">EDDK 121020Z 26009KT 9999 FEW025 BKN040 09/05 Q1016 NOSIG</span>
+    </div>
+  </div>
+
+  <!-- SECTORS -->
+  <section class="sec in" id="sectors">
+    <p class="eyebrow"><span class="slashes"></span><span data-de="Deine Arbeitsplätze" data-en="Your positions">Deine Arbeitsplätze</span></p>
+    <h2 data-de="Vier Sektoren. Vom Endanflug bis FL400." data-en="Four sectors. From final approach to FL400.">Vier Sektoren. Vom Endanflug bis FL400.</h2>
+    <p class="sub" data-de="Zwei Flughäfen im Anflug, zwei Radar-Sektoren auf der Strecke. Jeder spielt sich anders – vom engen ILS-Fädeln bis zur Übergabe an den Nachbarsektor." data-en="Two airports on approach, two radar sectors en route. Each plays differently – from tight ILS sequencing to handing off to the next sector.">Zwei Flughäfen im Anflug, zwei Radar-Sektoren auf der Strecke. Jeder spielt sich anders – vom engen ILS-Fädeln bis zur Übergabe an den Nachbarsektor.</p>
+
+    <div class="sectors">
+      <article class="sector" data-shot="eddk-de">
+        <header><span class="kind" data-de="Anflug" data-en="Approach">Anflug</span><span class="freq">135.350</span></header>
+        <h3>EDDK <span>Köln/Bonn</span></h3>
+        <p class="unit">Köln Arrival</p>
+        <ul>
+          <li><b>RWY</b> 13L/31R · 06/24</li>
+          <li data-de="Fracht-Drehkreuz mit vielen Heavies" data-en="Cargo hub with lots of heavies">Fracht-Drehkreuz mit vielen Heavies</li>
+          <li data-de="Cargo-Nacht als härteste Verkehrsstufe" data-en="Cargo night as the toughest traffic level">Cargo-Nacht als härteste Verkehrsstufe</li>
+        </ul>
+        <div class="alt"><span>GND</span><i></i><span>FL100</span></div>
+      </article>
+      <article class="sector" data-shot="eddf-de">
+        <header><span class="kind" data-de="Anflug" data-en="Approach">Anflug</span><span class="freq">120.805</span></header>
+        <h3>EDDF <span>Frankfurt</span></h3>
+        <p class="unit">Frankfurt Approach North</p>
+        <ul>
+          <li><b>RWY</b> 25R/25L/25C · 18</li>
+          <li data-de="Visual Swing auf die 25C" data-en="Visual swing onto 25C">Visual Swing auf die 25C</li>
+          <li data-de="Bahn 18 nur für Abflüge" data-en="Runway 18 for departures only">Bahn 18 nur für Abflüge</li>
+        </ul>
+        <div class="alt"><span>GND</span><i></i><span>FL100</span></div>
+      </article>
+      <article class="sector" data-shot="langen-en">
+        <header><span class="kind" data-de="Strecke" data-en="En route">Strecke</span><span class="freq">124.730</span></header>
+        <h3>Langen <span>Radar</span></h3>
+        <p class="unit">Gießen/Taunus</p>
+        <ul>
+          <li data-de="Steig- und Sinkflüge in den Großraum Frankfurt" data-en="Climbs and descents around Frankfurt">Steig- und Sinkflüge in den Großraum Frankfurt</li>
+          <li data-de="Übergaben an GED, PADH, NOR …" data-en="Handoffs to GED, PADH, NOR …">Übergaben an GED, PADH, NOR …</li>
+          <li data-de="Staffelung 5 NM / 1000 ft" data-en="Separation 5 NM / 1000 ft">Staffelung 5 NM / 1000 ft</li>
+        </ul>
+        <div class="alt"><span>FL100</span><i></i><span>FL245</span></div>
+      </article>
+      <article class="sector" data-shot="rhein-de">
+        <header><span class="kind" data-de="Strecke" data-en="En route">Strecke</span><span class="freq">132.330</span></header>
+        <h3>Rhein <span>Radar</span></h3>
+        <p class="unit">Frankfurt · Upper</p>
+        <ul>
+          <li data-de="Überflüge quer durch Europa" data-en="Overflights across Europe">Überflüge quer durch Europa</li>
+          <li data-de="Mach-Geschwindigkeiten, Übergabe an MUAC" data-en="Mach speeds, handoff to MUAC">Mach-Geschwindigkeiten, Übergabe an MUAC</li>
+          <li data-de="Höhenwind bis 80 kt" data-en="Winds aloft up to 80 kt">Höhenwind bis 80 kt</li>
+        </ul>
+        <div class="alt"><span>FL245</span><i></i><span>FL400</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="sec in" id="features">
+    <p class="eyebrow"><span class="slashes"></span>Features</p>
+    <h2 data-de="So nah dran wie ein Spiel sein kann." data-en="As close to the real thing as a game can get.">So nah dran wie ein Spiel sein kann.</h2>
+
+    <div class="bento">
+      <article class="b b-voice">
+        <div class="b-copy">
+          <span class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+          <h3 data-de="Sprechen statt klicken" data-en="Talk instead of click">Sprechen statt klicken</h3>
+          <p data-de="Leertaste halten und die Freigabe einfach sagen. AERA versteht Funksprech – und die Piloten lesen zurück, auf Deutsch oder Englisch." data-en="Hold space and just say the clearance. AERA understands radio phraseology – and pilots read back, in German or English.">Leertaste halten und die Freigabe einfach sagen. AERA versteht Funksprech – und die Piloten lesen zurück, auf Deutsch oder Englisch.</p>
+        </div>
+        <div class="ptt">
+          <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="say">„Eurowings two lima lima, turn left heading 250“</p>
+          <span class="key">␣ <span data-de="Leertaste" data-en="Space">Leertaste</span></span>
+        </div>
+      </article>
+
+      <article class="b b-cmd">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="m5 8 4 4-4 4M12 16h7"/></svg></span>
+        <h3 data-de="Oder tippen – blitzschnell" data-en="Or type – lightning fast">Oder tippen – blitzschnell</h3>
+        <p data-de="Kurzbefehle für Profis, Buttons im Flugdaten-Panel für alle anderen." data-en="Shorthand for pros, buttons in the flight data panel for everyone else.">Kurzbefehle für Profis, Buttons im Flugdaten-Panel für alle anderen.</p>
+        <div class="cmdline"><span class="pr">&gt;</span><code id="typed">EWG2LL L250 A40 I31R</code><span class="caret"></span></div>
+        <dl class="legend">
+          <div><dt>L250</dt><dd data-de="links Kurs 250" data-en="left heading 250">links Kurs 250</dd></div>
+          <div><dt>A40</dt><dd data-de="4000 ft" data-en="4000 ft">4000 ft</dd></div>
+          <div><dt>I31R</dt><dd data-de="ILS 31R frei" data-en="cleared ILS 31R">ILS 31R frei</dd></div>
+        </dl>
+      </article>
+
+      <article class="b b-wx">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 9h11a3 3 0 1 0-3-3M3 13h15a3 3 0 1 1-3 3M5 17h6"/></svg></span>
+        <h3 data-de="Live-Wetter" data-en="Live weather">Live-Wetter</h3>
+        <p data-de="Echtes METAR bestimmt die Landebahn. Gegenwind, Seitenwind und QNH stehen immer im Blick." data-en="The real METAR decides the runway. Headwind, crosswind and QNH always in view.">Echtes METAR bestimmt die Landebahn. Gegenwind, Seitenwind und QNH stehen immer im Blick.</p>
+        <div class="chips"><span class="on">LDG 31R</span><span>DEP 31R</span><span>Wind 290°/12 kt</span><span data-de="Gegenwind 11" data-en="Headwind 11">Gegenwind 11</span><span>QNH 1017</span></div>
+      </article>
+
+      <article class="b b-air">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 3 21h18z"/><circle cx="12" cy="14" r="2"/></svg></span>
+        <h3 data-de="Echter Luftraum" data-en="Real airspace">Echter Luftraum</h3>
+        <p data-de="Reale Fixes, RNAV-Punkte und Airways, Mindestradarhöhen (MVA) und Sperrgebiete (ED-R) – alles einzeln ein- und ausblendbar." data-en="Real fixes, RNAV points and airways, minimum vectoring altitudes (MVA) and restricted areas (ED-R) – each layer toggles on and off.">Reale Fixes, RNAV-Punkte und Airways, Mindestradarhöhen (MVA) und Sperrgebiete (ED-R) – alles einzeln ein- und ausblendbar.</p>
+        <div class="keys"><span><kbd>E</kbd><em data-de="Stimmen" data-en="Voices">Stimmen</em></span><span><kbd>N</kbd>RNAV</span><span><kbd>B</kbd>MVA</span><span><kbd>R</kbd>ED-R</span><span><kbd>M</kbd><em data-de="Karte" data-en="Map">Karte</em></span></div>
+      </article>
+
+      <article class="b b-measure">
+        <div class="b-copy">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20 20 4M7 17l2 2M10 14l2 2M13 11l2 2M16 8l2 2"/></svg></span>
+          <h3 data-de="Messen, planen, staffeln" data-en="Measure, plan, separate">Messen, planen, staffeln</h3>
+          <p data-de="Abstand, Kurs und Annäherung zwischen zwei Zielen direkt auf dem Radar – inklusive Zeit bis zum Konflikt." data-en="Distance, bearing and closure between two targets right on the scope – including time to conflict.">Abstand, Kurs und Annäherung zwischen zwei Zielen direkt auf dem Radar – inklusive Zeit bis zum Konflikt.</p>
+        </div>
+        <img src="img/aera-measure.webp" alt="" loading="lazy" width="900" height="550">
+      </article>
+
+      <article class="b b-airlines">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M10.5 21v-6.5L3 17v-2l7.5-4.5V5a1.5 1.5 0 0 1 3 0v5.5L21 15v2l-7.5-2.5V21l-1.5-1z"/></svg></span>
+        <h3 data-de="Echte Airlines & Muster" data-en="Real airlines & types">Echte Airlines &amp; Muster</h3>
+        <p data-de="Vom Eurowings-A320 über die UPS-763 bis zum Emirates-A388 – mit passenden Rufzeichen." data-en="From the Eurowings A320 to the UPS 763 and the Emirates A388 – with proper callsigns.">Vom Eurowings-A320 über die UPS-763 bis zum Emirates-A388 – mit passenden Rufzeichen.</p>
+        <div class="callsigns"><span>DLH626 <i>CRJ9</i></span><span>EWG4MX <i>A320</i></span><span>UPS544 <i>B763</i></span><span>CFG648 <i>A21N</i></span><span>UAE867 <i>A388</i></span><span>BAW360 <i>A320</i></span><span>RYR479K <i>B738</i></span><span>FDX950 <i>MD11</i></span></div>
+      </article>
+
+      <article class="b b-score">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg></span>
+        <h3 data-de="Punkte, die wehtun" data-en="Points that hurt">Punkte, die wehtun</h3>
+        <p data-de="Saubere Übergaben bringen Punkte. Staffelungsunterschreitung oder ein Flieger, der ohne Übergabe den Sektor verlässt, kosten welche." data-en="Clean handoffs earn points. Losing separation or letting a flight leave without a handoff costs you.">Saubere Übergaben bringen Punkte. Staffelungsunterschreitung oder ein Flieger, der ohne Übergabe den Sektor verlässt, kosten welche.</p>
+        <ul class="log">
+          <li class="ok">✓ <span data-de="TST25L gelandet, an Tower übergeben" data-en="TST25L landed, handed to tower">TST25L gelandet, an Tower übergeben</span> <b>+5</b></li>
+          <li class="bad">✕ <span data-de="DLH84 ohne Übergabe raus" data-en="DLH84 left without handoff">DLH84 ohne Übergabe raus</span> <b>−15</b></li>
+          <li class="bad">⚠ <span data-de="Staffelung EWG4MX / RYR57F" data-en="Separation EWG4MX / RYR57F">Staffelung EWG4MX / RYR57F</span> <b>−20</b></li>
+        </ul>
+      </article>
+
+      <article class="b b-sim">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span>
+        <h3 data-de="Deine Schicht, dein Tempo" data-en="Your shift, your pace">Deine Schicht, dein Tempo</h3>
+        <p data-de="Verkehr von „Light“ bis zur Cargo-Nacht, optionale Abflüge über SIDs, Zeitraffer bis 3×." data-en="Traffic from light to a cargo night, optional SID departures, time acceleration up to 3×.">Verkehr von „Light“ bis zur Cargo-Nacht, optionale Abflüge über SIDs, Zeitraffer bis 3×.</p>
+        <div class="speed"><span>❚❚</span><span>0.5×</span><span class="on">1×</span><span>2×</span><span>3×</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- RADIO -->
+  <section class="sec radio-sec" id="radio">
+    <div class="in radio-grid">
+      <div>
+        <p class="eyebrow"><span class="slashes"></span><span data-de="Auf der Frequenz" data-en="On frequency">Auf der Frequenz</span></p>
+        <h2 data-de="Hör mal rein in eine Schicht." data-en="Listen in on a shift.">Hör mal rein in eine Schicht.</h2>
+        <p class="sub" data-de="Piloten melden sich mit Transition und ATIS-Kennung, fragen nach Vektoren, wenn sie ins Holding müssen – und du hältst den Laden zusammen. Alle Stimmen gibt es auf Deutsch und Englisch." data-en="Pilots check in with their transition and ATIS letter, ask for vectors when they hit the hold – and you keep it all together. Every voice comes in German and English.">Piloten melden sich mit Transition und ATIS-Kennung, fragen nach Vektoren, wenn sie ins Holding müssen – und du hältst den Laden zusammen. Alle Stimmen gibt es auf Deutsch und Englisch.</p>
+        <div class="lang-pills"><span>🇩🇪 Deutsch</span><span>🇬🇧 English</span><span data-de="UI + Stimmen" data-en="UI + voices">UI + Stimmen</span></div>
+      </div>
+      <div class="radio" aria-live="off">
+        <div class="radio-head"><span data-de="FUNK · LANGEN RADAR" data-en="RADIO · LANGEN RADAR">FUNK · LANGEN RADAR</span><span class="vox"><i></i>LIVE</span></div>
+        <div class="freqs"><span><b>APP</b> 135.350</span><span><b>DIR</b> 121.055</span><span><b>TWR</b> 124.980</span><span><b>ATIS</b> 132.130</span></div>
+        <ol class="radio-log" id="radio-log"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="sec in" id="screens">
+    <p class="eyebrow"><span class="slashes"></span>Screenshots</p>
+    <h2 data-de="Direkt aus dem Spiel." data-en="Straight from the game.">Direkt aus dem Spiel.</h2>
+    <div class="gallery" id="gallery">
+      <button class="g g-big" data-full="img/aera-rhein-de.webp"><img src="img/aera-rhein-de.webp" alt="Rhein Radar" loading="lazy"><span>Rhein Radar · FL245–400</span></button>
+      <button class="g" data-full="img/aera-eddf-de.webp"><img src="img/aera-eddf-de-sm.webp" alt="Frankfurt Approach" loading="lazy"><span>EDDF · Frankfurt Approach</span></button>
+      <button class="g" data-full="img/aera-langen-en.webp"><img src="img/aera-langen-en-sm.webp" alt="Langen Radar" loading="lazy"><span>Langen Radar · FL100–245</span></button>
+      <button class="g" data-full="img/aera-eddk-en.webp"><img src="img/aera-eddk-en-sm.webp" alt="Köln Arrival" loading="lazy"><span>EDDK · Köln Arrival (EN)</span></button>
+      <button class="g" data-full="img/aera-menu.webp"><img src="img/aera-menu-sm.webp" alt="Menü" loading="lazy"><span data-de="Schicht einrichten" data-en="Set up your shift">Schicht einrichten</span></button>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="sec in" id="roadmap">
+    <p class="eyebrow"><span class="slashes"></span>Roadmap</p>
+    <h2 data-de="Wo die Reise hingeht." data-en="Where this is heading.">Wo die Reise hingeht.</h2>
+    <p class="sub" data-de="AERA ist im Early Access und wächst Stück für Stück. Die Pläne können sich ändern – Feedback entscheidet mit." data-en="AERA is in Early Access and grows step by step. Plans may change – feedback helps decide.">AERA ist im Early Access und wächst Stück für Stück. Die Pläne können sich ändern – Feedback entscheidet mit.</p>
+    <ol class="road">
+      <li class="done">
+        <span class="phase" data-de="Jetzt · Early Access" data-en="Now · Early Access">Jetzt · Early Access</span>
+        <h3 data-de="Erste Schichten" data-en="First shifts">Erste Schichten</h3>
+        <ul>
+          <li data-de="Anflug Köln/Bonn und Frankfurt" data-en="Approach Cologne/Bonn and Frankfurt">Anflug Köln/Bonn und Frankfurt</li>
+          <li data-de="Langen Radar und Rhein Radar" data-en="Langen Radar and Rhein Radar">Langen Radar und Rhein Radar</li>
+          <li data-de="Spracheingabe, Stimmen DE/EN, Live-METAR" data-en="Voice input, DE/EN voices, live METAR">Spracheingabe, Stimmen DE/EN, Live-METAR</li>
+        </ul>
+      </li>
+      <li class="next">
+        <span class="phase" data-de="Als Nächstes" data-en="Next">Als Nächstes</span>
+        <h3 data-de="Mehr Tiefe" data-en="More depth">Mehr Tiefe</h3>
+        <ul>
+          <li data-de="Geführte Einstiegsschicht für Neulinge" data-en="Guided first shift for newcomers">Geführte Einstiegsschicht für Neulinge</li>
+          <li data-de="Mehr Szenarien: Gewitter, Bahnsperrung, Notfälle" data-en="More scenarios: storms, runway closures, emergencies">Mehr Szenarien: Gewitter, Bahnsperrung, Notfälle</li>
+          <li data-de="Feinschliff an Funk und Spracherkennung" data-en="Polish for radio and speech recognition">Feinschliff an Funk und Spracherkennung</li>
+        </ul>
+      </li>
+      <li class="later">
+        <span class="phase" data-de="Später" data-en="Later">Später</span>
+        <h3 data-de="Mehr Himmel" data-en="More sky">Mehr Himmel</h3>
+        <ul>
+          <li data-de="Weitere deutsche Flughäfen und Sektoren" data-en="More German airports and sectors">Weitere deutsche Flughäfen und Sektoren</li>
+          <li data-de="Statistiken und Bestenlisten pro Schicht" data-en="Stats and leaderboards per shift">Statistiken und Bestenlisten pro Schicht</li>
+          <li data-de="Eure Wünsche – schreibt mir!" data-en="Your wishes – write to me!">Eure Wünsche – schreibt mir!</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <!-- EARLY ACCESS -->
+  <section class="sec in" id="early">
+    <div class="ea">
+      <div class="ea-scope" aria-hidden="true"><div class="sweep"></div></div>
+      <img class="ea-icon" src="img/aera-icon-lg.webp" alt="" width="640" height="585" loading="lazy">
+      <div class="ea-copy">
+        <span class="status"><i></i>Early Access</span>
+        <h2 data-de="Bereit für deine erste Schicht?" data-en="Ready for your first shift?">Bereit für deine erste Schicht?</h2>
+        <p data-de="AERA ist noch in Entwicklung. Du willst früh mitspielen? Frag die Beta an – ich melde mich per Mail, sobald ein Platz frei ist." data-en="AERA is still in development. Want to play early? Request the beta – I'll get back to you by mail as soon as there's a spot.">AERA ist noch in Entwicklung. Du willst früh mitspielen? Frag die Beta an – ich melde mich per Mail, sobald ein Platz frei ist.</p>
+        <div class="cta left">
+          <a class="btn primary beta" href="mailto:kontakt@dev-dsue.de?subject=AERA%20Beta"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-de="Beta anfragen" data-en="Request beta">Beta anfragen</span></a>
+          <a class="btn ghost" href="mailto:kontakt@dev-dsue.de?subject=AERA%20Feedback"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-de="Feedback senden" data-en="Send feedback">Feedback senden</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec in faq" id="faq">
+    <p class="eyebrow"><span class="slashes"></span>FAQ</p>
+    <h2 data-de="Gute Fragen." data-en="Good questions.">Gute Fragen.</h2>
+    <details><summary data-de="Brauche ich Vorkenntnisse als Fluglotse?" data-en="Do I need any ATC experience?">Brauche ich Vorkenntnisse als Fluglotse?</summary><p data-de="Nein. Starte mit wenig Verkehr – AERA gibt dir zu Schichtbeginn Tipps, wie du die Anflüge auf den Localizer bekommst. Wer schon Erfahrung aus VATSIM oder IVAO mitbringt, fühlt sich sofort zu Hause." data-en="No. Start with light traffic – AERA gives you tips at the start of your shift on how to get arrivals onto the localizer. If you know VATSIM or IVAO, you'll feel right at home.">Nein. Starte mit wenig Verkehr – AERA gibt dir zu Schichtbeginn Tipps, wie du die Anflüge auf den Localizer bekommst.</p></details>
+    <details><summary data-de="Brauche ich ein Mikrofon?" data-en="Do I need a microphone?">Brauche ich ein Mikrofon?</summary><p data-de="Nein. Sprechen ist optional – alles geht auch per Befehlszeile oder mit den Buttons im Flugdaten-Panel." data-en="No. Talking is optional – everything also works via the command line or the buttons in the flight data panel.">Nein. Sprechen ist optional – alles geht auch per Befehlszeile oder mit den Buttons im Flugdaten-Panel.</p></details>
+    <details><summary data-de="Gibt es AERA auf Deutsch und Englisch?" data-en="Is AERA available in German and English?">Gibt es AERA auf Deutsch und Englisch?</summary><p data-de="Ja – Oberfläche, Funk und Pilotenstimmen gibt es in beiden Sprachen." data-en="Yes – interface, radio and pilot voices come in both languages.">Ja – Oberfläche, Funk und Pilotenstimmen gibt es in beiden Sprachen.</p></details>
+    <details><summary data-de="Wie echt sind die Daten?" data-en="How real is the data?">Wie echt sind die Daten?</summary><p data-de="Fixes, Airways, Frequenzen und Airlines sind an die echte Welt angelehnt, das Wetter kommt live als METAR. AERA ist trotzdem ein Spiel – bitte nicht für echte Navigation verwenden." data-en="Fixes, airways, frequencies and airlines are modelled on the real world and the weather comes live as METAR. AERA is still a game – please don't use it for real navigation.">Fixes, Airways, Frequenzen und Airlines sind an die echte Welt angelehnt, das Wetter kommt live als METAR. AERA ist trotzdem ein Spiel – bitte nicht für echte Navigation verwenden.</p></details>
+    <details><summary data-de="Wann kann ich spielen?" data-en="When can I play?">Wann kann ich spielen?</summary><p data-de="AERA ist im Early Access und noch in Entwicklung. Über „Beta anfragen“ kannst du dich für die Beta melden – ich schreibe dir dann per Mail." data-en="AERA is in Early Access and still in development. Use “Request beta” to sign up – I'll get back to you by mail.">AERA ist im Early Access und noch in Entwicklung. Über „Beta anfragen“ kannst du dich für die Beta melden – ich schreibe dir dann per Mail.</p></details>
+    <details><summary data-de="Hat AERA etwas mit der echten Flugsicherung zu tun?" data-en="Is AERA affiliated with real air traffic control?">Hat AERA etwas mit der echten Flugsicherung zu tun?</summary><p data-de="Nein. AERA ist ein privates Hobbyprojekt von Desue und steht in keiner Verbindung zur DFS, zu EUROCONTROL oder zu den gezeigten Airlines." data-en="No. AERA is a private hobby project by Desue and is not affiliated with DFS, EUROCONTROL or any of the airlines shown.">Nein. AERA ist ein privates Hobbyprojekt von Desue und steht in keiner Verbindung zur DFS, zu EUROCONTROL oder zu den gezeigten Airlines.</p></details>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="in">
+    <span class="fl"><img src="img/aera-icon.png" alt=""><span>AERA · <span data-de="ein Spiel von" data-en="a game by">ein Spiel von</span> <a href="index.html">Desue</a></span></span>
+    <span class="sp"></span>
+    <a href="index.html">dev-dsue.de</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox"><button class="lb-close" aria-label="Schließen">×</button><img alt=""></dialog>
+
+<script src="aera.js?v=2"></script>
+</body>
+</html>
