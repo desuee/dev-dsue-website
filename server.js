@@ -166,7 +166,7 @@ const ipOf = req => String(req.headers['x-forwarded-for'] || req.socket.remoteAd
 const secure = req => req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
 const TYPES = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'application/javascript; charset=utf-8', png: 'image/png', webp: 'image/webp', jpg: 'image/jpeg', svg: 'image/svg+xml', ico: 'image/x-icon', txt: 'text/plain; charset=utf-8' };
 // public website: only these files / the img folder (never server code or package files)
-const SITE = new Set(['index.html', 'impressum.html', 'datenschutz.html', 'style.css', 'app.js', 'theme.js', 'robots.txt', 'aera.html', 'aera.css', 'aera.js']);
+const SITE = new Set(['index.html', 'impressum.html', 'datenschutz.html', 'style.css', 'app.js', 'theme.js', 'robots.txt', 'aera.html', 'aera.css', 'aera.js', 'aera-changelog.html', 'aera-changelog-data.js']);
 const SITE_CSP = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'";
 function serveFile(res, file, cache, csp) {
   if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return send(res, 404, notFound(), TYPES.html);
@@ -190,7 +190,9 @@ http.createServer(async (req, res) => {
       if (p === '/admin') { res.writeHead(301, { Location: '/admin/' }); return res.end(); }
       if (p === '/admin/' || /^\/admin\/(app\.js|style\.css)$/.test(p)) return serveFile(res, path.join(ADMIN, p === '/admin/' ? 'index.html' : p.slice(7)), 'no-cache', CSP);
       if (p === '/') return serveFile(res, path.join(ROOT, 'index.html'), 'no-cache', SITE_CSP);
-      if (p === '/aera' || p === '/aera/') return serveFile(res, path.join(ROOT, 'aera.html'), 'no-cache', SITE_CSP);
+      if (p === '/aera/') { res.writeHead(301, { Location: '/aera' }); return res.end(); }
+      if (p === '/aera') return serveFile(res, path.join(ROOT, 'aera.html'), 'no-cache', SITE_CSP);
+      if (p === '/aera/changelog' || p === '/aera/changelog/') return serveFile(res, path.join(ROOT, 'aera-changelog.html'), 'no-cache', SITE_CSP);
       const name = decodeURIComponent(p.slice(1));
       if (SITE.has(name)) return serveFile(res, path.join(ROOT, name), /\.html$/.test(name) ? 'no-cache' : 'public, max-age=3600', SITE_CSP);
       if (/^img\/[a-z0-9._-]+\.(png|webp|jpg|svg|ico)$/i.test(name)) return serveFile(res, path.join(ROOT, name), 'public, max-age=86400', SITE_CSP);
