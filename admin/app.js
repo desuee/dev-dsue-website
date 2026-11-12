@@ -192,6 +192,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('compos
 
 // ---------------- start ----------------
 function startApp() {
+  if (/[?&]next=studio\b/.test(location.search)) { location.href = '/admin/studio'; return; }
   $('login').classList.add('hidden'); $('app').classList.remove('hidden');
   loadFolders().then(() => loadList()).catch(e => toast(e.message, true));
   clearInterval(timer); timer = setInterval(() => { if (document.visibilityState === 'visible') { loadFolders().catch(() => {}); loadList(true); } }, 60000);

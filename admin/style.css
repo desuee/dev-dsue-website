@@ -135,3 +135,7 @@ svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke
   .atts,.blocked{margin-left:16px;margin-right:16px;padding-left:0}
   .theme{display:none}
 }
+
+/* link to the studio */
+.studio-link{flex:none}
+@media (max-width:700px){.studio-link span{display:none}.studio-link{width:40px;padding:0}}
