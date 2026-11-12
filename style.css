@@ -216,3 +216,34 @@ details a,.legal a{color:var(--link)}
 .pj.game .pj-go{color:#1e88e5}
 .pj.game .pj-img{background:#07111f}
 .nav nav a.nav-aera{font-weight:700;color:#1e88e5}
+
+/* AERA: featured on the start page (always dark, in AERA colours) */
+.aera-chip{border-color:#1e88e566}
+#aera{padding-top:8px;padding-bottom:84px}
+.aera-feat{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:44px;align-items:center;padding:56px 0 56px 56px;border-radius:28px;overflow:hidden;text-decoration:none;color:#f5f7fa;
+  background:radial-gradient(900px 500px at 15% 0%,#123a66 0%,transparent 60%),linear-gradient(135deg,#0d2440,#07111f 70%);border:1px solid #27466d;box-shadow:0 40px 90px #0b1d3355;transition:transform .3s,box-shadow .3s}
+.aera-feat:hover{transform:translateY(-4px);box-shadow:0 50px 110px #0b1d3377}
+.af-scope{position:absolute;left:-260px;top:50%;width:900px;height:900px;margin-top:-450px;border-radius:50%;pointer-events:none;opacity:.6;
+  background:repeating-radial-gradient(circle,transparent 0 89px,#1e88e524 89px 90px);-webkit-mask:radial-gradient(circle,#000 30%,transparent 68%);mask:radial-gradient(circle,#000 30%,transparent 68%)}
+.af-sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#1e88e500 0deg 300deg,#1e88e533 355deg,#8cc8ff66 360deg);animation:afsweep 8s linear infinite}
+@keyframes afsweep{to{transform:rotate(360deg)}}
+.af-copy{position:relative}
+.af-badge{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 12px;border-radius:999px;border:1px solid #1e88e555;background:#1e88e51a;color:#8cc8ff;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.af-badge i{width:8px;height:8px;border-radius:50%;background:#4fd69c;box-shadow:0 0 10px #4fd69c}
+.af-logo{width:100%;max-width:440px;height:auto;margin:26px 0 0;filter:drop-shadow(0 14px 34px #1e88e533)}
+.af-motto{margin:16px 0 0;font-size:13px;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:#f5f7fa}
+.af-text{margin:16px 0 0;font-size:17px;line-height:1.6;color:#c7ced6;max-width:480px}
+.af-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.af-chips span{font:600 12.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:5px 10px;border-radius:8px;background:#07111f;border:1px solid #27466d;color:#8cc8ff}
+.af-btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;height:52px;padding:0 24px;border-radius:13px;background:linear-gradient(135deg,#2b95f0,#1565c0);color:#fff;font-weight:700;font-size:16.5px;box-shadow:0 12px 30px #1e88e540,inset 0 1px 0 #ffffff33;transition:.2s}
+.af-btn b{transition:transform .2s}
+.aera-feat:hover .af-btn b{transform:translateX(4px)}
+.af-shot{position:relative;margin:0;border-radius:16px 0 0 16px;overflow:hidden;border:1px solid #27466d;border-right:0;box-shadow:0 30px 70px #0009;transform:perspective(1600px) rotateY(-8deg);transform-origin:100% 50%;transition:transform .6s}
+.aera-feat:hover .af-shot{transform:perspective(1600px) rotateY(0)}
+.af-shot img{width:100%;height:auto}
+@media (max-width:900px){
+  .aera-feat{grid-template-columns:minmax(0,1fr);padding:36px 24px 0;gap:30px}
+  .af-shot{border-radius:14px 14px 0 0;border-right:1px solid #27466d;border-bottom:0;transform:none}
+  .aera-feat:hover .af-shot{transform:none}
+}
+@media (prefers-reduced-motion:reduce){.af-sweep{animation:none}}
