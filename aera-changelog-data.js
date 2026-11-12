@@ -6,6 +6,22 @@
 //  date ist optional: 'JJJJ-MM-TT'
 // ============================================================
 const AERA_CHANGELOG = [
+  { version: '0.8.2', date: "2026-11-12", title: { de: "Schichtende & Auswertung", en: "End of shift & debrief" }, sections: [
+    { kind: 'new', items: [
+      { de: "Schichtlänge im Startbildschirm: 30 min, 60 min (Standard), 2 Std oder offen. Die Restzeit steht neben der Uhr.",
+        en: "Shift length on the start screen: 30 min, 60 min (default), 2 h or open. The time left is shown next to the clock." },
+      { de: "„⏹ Schicht beenden“ in der Kopfzeile – zweimal klicken, damit nichts aus Versehen endet.",
+        en: "“⏹ End shift” in the header – click twice, so nothing ends by accident." },
+      { de: "Auswertung am Schichtende:",
+        en: "End-of-shift debrief:",
+        sub: [
+          ["Note von A+ bis E, nach Punkten pro Stunde und Staffelungsverstößen", "grade from A+ to E, based on points per hour and separation losses"],
+          ["Landungen, Übergaben, Staffelungsverstöße, Durchstarts, MVA/ED-R, gelöste Notfälle und Koordinations-Anrufe", "landings, handoffs, separation losses, go-arounds, MVA/ED-R, emergencies handled and coordination calls"],
+          ["persönlicher Rekord pro Flughafen bzw. Sektor", "personal best per airport or sector"],
+          ["Ergebnis kopieren", "copy the result"],
+          ["Nach Ablauf der Zeit: „Weiterarbeiten (Überstunden)“", "when time runs out: “Keep working (overtime)”"]]  },
+    ] },
+  ] },
   { version: '0.8.1', date: "2026-11-12", title: { de: "Telefon & Koordination", en: "Phone & coordination" }, sections: [
     { kind: 'new', items: [
       { de: "📞 Telefon / Koordination (Button oben rechts oder Taste T): Bei Notfällen rufst du die zuständigen Stellen an.",
