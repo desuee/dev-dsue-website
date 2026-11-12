@@ -15,3 +15,10 @@ Die Installer bleiben bei GitHub Releases.
 
 Das Passwort des Postfachs wird nirgends gespeichert: Es wird beim Anmelden vom Mailserver geprüft
 und nur verschlüsselt im Arbeitsspeicher gehalten, bis du dich abmeldest (oder nach 60 Minuten Inaktivität).
+
+## Studio (/admin/studio): Changelogs und Downloads
+Mit demselben Login wie das Postfach. Damit Änderungen dauerhaft bleiben, schreibt das Studio direkt nach GitHub:
+Changelogs und Versionen als `data/*.json` ins Repository, Programmdateien ins neueste GitHub-Release.
+- Variable `GITHUB_TOKEN` = Fine-grained Token (github.com → Settings → Developer settings → Fine-grained tokens),
+  nur für das Repository `desuee/dev-dsue-website`, Berechtigung **Contents: Read and write**.
+- Ohne Token kann man im Studio alles ansehen, aber nichts veröffentlichen.

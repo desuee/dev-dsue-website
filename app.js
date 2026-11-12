@@ -1,51 +1,15 @@
 // ============================================================
 //  EINSTELLUNGEN – nur hier etwas ändern
 //  GITHUB = dein GitHub-Name, REPO = das Repository mit den Releases.
-//  Die Download-Links zeigen immer auf das neueste Release ("latest"),
-//  darum müssen die Dateien dort immer genau so heißen wie unten.
+//  Die Download-Links zeigen immer auf das neueste Release ("latest").
+//  Versionen, Dateinamen und Changelog pflegst du unter dev-dsue.de/admin/studio.
 // ============================================================
 const GITHUB = 'desuee';
 const REPO = 'dev-dsue-website';
-const APPS = {
-  mediagrab: {
-    version: '1.0.1',
-    win: 'MediaGrab-Setup.exe',
-    macArm: 'MediaGrab-Mac-AppleSilicon.zip',
-    macIntel: 'MediaGrab-Mac-Intel.zip',
-    style: 'mg',
-  },
-  uploader: {
-    version: '1.0.2',
-    win: 'Workshop-Uploader-Setup.exe',
-    style: 'wu',
-  },
-};
-
-// Changelog: neueste Einträge oben. Neue Version = neuen Block oben einfügen.
-// Jede Änderung: [Art, Deutsch, Englisch] – Art: 'new' (Neu), 'imp' (Verbessert), 'fix' (Behoben)
-const CHANGELOG = [
-  { app: 'mediagrab', version: '1.0.1', date: '2026-11-03', items: [
-    ['new', 'SoundCloud-Links werden erkannt – Download als MP3 oder WAV', 'SoundCloud links are recognised – download as MP3 or WAV'],
-    ['new', 'Ganze Sets und Playlists in einem Rutsch, durchnummeriert in einem eigenen Ordner', 'Whole sets and playlists in one go, numbered in their own folder'],
-    ['imp', 'Fortschritt „Track 3/12“ beim Laden von Sets', '“Track 3/12” progress while downloading sets'],
-    ['imp', 'Die App startet schneller', 'The app starts faster'],
-  ] },
-  { app: 'mediagrab', version: '1.0.0', date: '2026-11-03', items: [
-    ['new', 'Erste Version für Windows und macOS (Apple Silicon und Intel)', 'First release for Windows and macOS (Apple Silicon and Intel)'],
-    ['new', 'MP3 mit 320 kbps inklusive Cover und Titel', 'MP3 at 320 kbps with cover and title'],
-    ['new', 'MP4 bis 4K, bevorzugt 1080p in H.264', 'MP4 up to 4K, prefers 1080p H.264'],
-    ['new', 'WAV verlustfrei', 'Lossless WAV'],
-    ['new', 'Mehrere Downloads gleichzeitig, die Engine aktualisiert sich selbst', 'Several downloads at once, the engine updates itself'],
-  ] },
-  { app: 'uploader', version: '1.0.2', date: '2026-11', items: [
-    ['new', 'Sprachauswahl: Deutsch, Englisch, Tschechisch', 'Language picker: German, English, Czech'],
-    ['fix', 'Eigene Mods laden zuverlässig, auch wenn Steam kurz nicht antwortet', 'Your mods load reliably, even when Steam briefly does not answer'],
-  ] },
-  { app: 'uploader', version: '1.0.0', date: '2026-11', items: [
-    ['new', 'Erste Version: Mods für Puck mit Steam-Anmeldung in den Workshop hochladen', 'First release: upload Puck mods to the Workshop with your Steam sign-in'],
-    ['new', 'Drag & Drop für Dateien und Ordner, neue Mods mit Titel, Bild und Sichtbarkeit', 'Drag & drop for files and folders, new mods with title, image and visibility'],
-  ] },
-];
+// Versionen, Dateinamen und Changelog kommen aus data/apps.json (bearbeiten unter /admin/studio)
+const SITE_DATA = window.DSUE_DATA || { apps: {}, changelog: [] };
+const APPS = SITE_DATA.apps;
+const CHANGELOG = SITE_DATA.changelog;
 
 // Projekte: Reihenfolge = Reihenfolge auf der Seite
 const PROJECTS = [

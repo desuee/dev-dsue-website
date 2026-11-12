@@ -1,4 +1,4 @@
-// dev-dsue.de – website + webmail (/admin) – by Desue
+// dev-dsue.de – website + webmail (/admin) + studio for changelogs and downloads (/admin/studio, see studio.js) – by Desue
 // The website files are served as they are (same files GitHub Pages used). /admin is a small webmail for kontakt@dev-dsue.de.
 // Signs in with the mailbox's own address + password (checked by the mail server over IMAP).
 // The password is never written anywhere: it lives only in this process's memory, encrypted, for the session.
@@ -62,6 +62,7 @@ async function withBox(s, folder, fn) {
 }
 
 const mock = MOCK ? require('./mock') : null;
+const studio = require('./studio');   // /admin/studio: changelogs + program downloads (writes to GitHub)
 
 const api = {
   async folders(s) {
@@ -166,7 +167,7 @@ const ipOf = req => String(req.headers['x-forwarded-for'] || req.socket.remoteAd
 const secure = req => req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
 const TYPES = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'application/javascript; charset=utf-8', png: 'image/png', webp: 'image/webp', jpg: 'image/jpeg', svg: 'image/svg+xml', ico: 'image/x-icon', txt: 'text/plain; charset=utf-8' };
 // public website: only these files / the img folder (never server code or package files)
-const SITE = new Set(['index.html', 'impressum.html', 'datenschutz.html', 'style.css', 'app.js', 'theme.js', 'robots.txt', 'aera.html', 'aera.css', 'aera.js', 'aera-changelog.html', 'aera-changelog-data.js']);
+const SITE = new Set(['index.html', 'impressum.html', 'datenschutz.html', 'style.css', 'app.js', 'theme.js', 'robots.txt', 'aera.html', 'aera.css', 'aera.js', 'aera-changelog.html']);
 const SITE_CSP = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'";
 function serveFile(res, file, cache, csp) {
   if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return send(res, 404, notFound(), TYPES.html);
@@ -188,7 +189,11 @@ http.createServer(async (req, res) => {
     // dev-dsue.de is the main address (www.dev-dsue.de is forwarded there by the DNS provider)
     if (req.method === 'GET' || req.method === 'HEAD') {
       if (p === '/admin') { res.writeHead(301, { Location: '/admin/' }); return res.end(); }
-      if (p === '/admin/' || /^\/admin\/(app\.js|style\.css)$/.test(p)) return serveFile(res, path.join(ADMIN, p === '/admin/' ? 'index.html' : p.slice(7)), 'no-cache', CSP);
+      if (p === '/admin/' || /^\/admin\/(app\.js|style\.css|studio\.js|studio\.css)$/.test(p)) return serveFile(res, path.join(ADMIN, p === '/admin/' ? 'index.html' : p.slice(7)), 'no-cache', CSP);
+      if (p === '/admin/studio' || p === '/admin/studio/') return serveFile(res, path.join(ADMIN, 'studio.html'), 'no-cache', CSP);
+      // data for the public pages, kept in memory so changes from the studio show at once
+      if (p === '/aera-changelog-data.js') return send(res, 200, studio.js.aera(), TYPES.js, { 'Cache-Control': 'no-cache', 'Content-Security-Policy': SITE_CSP, 'X-Robots-Tag': 'all' });
+      if (p === '/site-data.js') return send(res, 200, studio.js.site(), TYPES.js, { 'Cache-Control': 'no-cache', 'Content-Security-Policy': SITE_CSP, 'X-Robots-Tag': 'all' });
       if (p === '/') return serveFile(res, path.join(ROOT, 'index.html'), 'no-cache', SITE_CSP);
       if (p === '/aera/') { res.writeHead(301, { Location: '/aera' }); return res.end(); }
       if (p === '/aera') return serveFile(res, path.join(ROOT, 'aera.html'), 'no-cache', SITE_CSP);
@@ -199,7 +204,7 @@ http.createServer(async (req, res) => {
     }
     if (!p.startsWith('/api/')) return send(res, 404, notFound(), TYPES.html);
     // every change needs this header: a plain form or link from another site cannot set it
-    if (req.method === 'POST' && req.headers['x-dsue'] !== '1') return send(res, 403, { error: 'Forbidden' });
+    if ((req.method === 'POST' || req.method === 'PUT') && req.headers['x-dsue'] !== '1') return send(res, 403, { error: 'Forbidden' });
 
     if (p === '/api/login' && req.method === 'POST') {
       const ip = ipOf(req);
@@ -221,6 +226,10 @@ http.createServer(async (req, res) => {
     if (!s) return send(res, 401, { error: 'Nicht angemeldet' });
     s.last = Date.now();
 
+    if (p.startsWith('/api/studio/')) {
+      try { return await studio.handle(req, res, u, p, send, readJson); }
+      catch (e) { return send(res, e.status || 500, { error: String(e.message || e).slice(0, 300) }); }
+    }
     if (p === '/api/logout' && req.method === 'POST') { endSession(t); return send(res, 200, { ok: true }, 'application/json', { 'Set-Cookie': 'dm_s=; Max-Age=0; Path=/' }); }
     if (p === '/api/folders') return send(res, 200, await api.folders(s));
     const folder = u.searchParams.get('folder') || 'INBOX', uid = +u.searchParams.get('uid') || 0;
