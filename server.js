@@ -185,9 +185,7 @@ http.createServer(async (req, res) => {
   const u = new URL(req.url, 'http://x'), p = u.pathname;
   try {
     if (p === '/healthz') return send(res, 200, 'ok', 'text/plain');
-    // www.dev-dsue.de and dev-dsue.de are the same site: send everybody to www
-    const host = String(req.headers.host || '');
-    if (host === 'dev-dsue.de') { res.writeHead(301, { Location: 'https://www.dev-dsue.de' + req.url }); return res.end(); }
+    // dev-dsue.de is the main address (www.dev-dsue.de is forwarded there by the DNS provider)
     if (req.method === 'GET' || req.method === 'HEAD') {
       if (p === '/admin') { res.writeHead(301, { Location: '/admin/' }); return res.end(); }
       if (p === '/admin/' || /^\/admin\/(app\.js|style\.css)$/.test(p)) return serveFile(res, path.join(ADMIN, p === '/admin/' ? 'index.html' : p.slice(7)), 'no-cache', CSP);
