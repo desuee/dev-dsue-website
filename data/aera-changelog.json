@@ -1,0 +1,606 @@
+[
+ {
+  "version": "0.8.2",
+  "date": "2026-11-12",
+  "title": {
+   "de": "Schichtende & Auswertung",
+   "en": "End of shift & debrief"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Schichtlänge im Startbildschirm: 30 min, 60 min (Standard), 2 Std oder offen. Die Restzeit steht neben der Uhr.",
+      "en": "Shift length on the start screen: 30 min, 60 min (default), 2 h or open. The time left is shown next to the clock."
+     },
+     {
+      "de": "„⏹ Schicht beenden“ in der Kopfzeile – zweimal klicken, damit nichts aus Versehen endet.",
+      "en": "“⏹ End shift” in the header – click twice, so nothing ends by accident."
+     },
+     {
+      "de": "Auswertung am Schichtende:",
+      "en": "End-of-shift debrief:",
+      "sub": [
+       [
+        "Note von A+ bis E, nach Punkten pro Stunde und Staffelungsverstößen",
+        "grade from A+ to E, based on points per hour and separation losses"
+       ],
+       [
+        "Landungen, Übergaben, Staffelungsverstöße, Durchstarts, MVA/ED-R, gelöste Notfälle und Koordinations-Anrufe",
+        "landings, handoffs, separation losses, go-arounds, MVA/ED-R, emergencies handled and coordination calls"
+       ],
+       [
+        "persönlicher Rekord pro Flughafen bzw. Sektor",
+        "personal best per airport or sector"
+       ],
+       [
+        "Ergebnis kopieren",
+        "copy the result"
+       ],
+       [
+        "Nach Ablauf der Zeit: „Weiterarbeiten (Überstunden)“",
+        "when time runs out: “Keep working (overtime)”"
+       ]
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.8.1",
+  "date": "2026-11-12",
+  "title": {
+   "de": "Telefon & Koordination",
+   "en": "Phone & coordination"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "📞 Telefon / Koordination (Button oben rechts oder Taste T): Bei Notfällen rufst du die zuständigen Stellen an.",
+      "en": "📞 Telephone / coordination (button top right or key T): call the right services during emergencies.",
+      "sub": [
+       [
+        "Köln Tower: Notfall ankündigen, Feuerwehr-Vollalarm oder Bereitschaft auslösen lassen",
+        "Köln Tower: announce the emergency, have the fire brigade put on full alert or standby"
+       ],
+       [
+        "Flughafen-Leitstelle: Rettungsdienst und Notarzt zur Parkposition, Bahnkontrolle",
+        "Airport operations centre: ambulance and doctor to the stand, runway inspection"
+       ],
+       [
+        "Wachleiter, Bundespolizei, NLFZ (Luftverteidigung)",
+        "Supervisor, Federal Police, NLFZ (air defence)"
+       ],
+       [
+        "Im Center zusätzlich die Anflugkontrolle des Zielflughafens",
+        "In center mode also the destination approach"
+       ]
+      ]
+     },
+     {
+      "de": "Jeder Notfall zeigt in den Flugdaten eine Checkliste der nötigen Anrufe. Jeder richtige Anruf gibt +3, jeder fehlende −3. Das Telefon-Symbol blinkt mit der Zahl offener Anrufe. Gespräche erscheinen im Funklog.",
+      "en": "Each emergency shows a checklist of required calls in the flight data. Each correct call gives +3, each missing one −3. The phone icon blinks with the number of open calls. Conversations appear in the radio log."
+     },
+     {
+      "de": "Vogelschlag:",
+      "en": "Bird strikes:",
+      "sub": [
+       [
+        "Nach dem Start: meist „continuing“, dann ist eine Bahnkontrolle nötig. In etwa 30 % der Fälle PAN PAN mit Rückkehr und Squawk 7700.",
+        "After departure: usually “continuing”, then a runway inspection is needed. In about 30 % of cases PAN PAN with a return to the field and squawk 7700."
+       ],
+       [
+        "Im Endanflug: „continuing approach“, dann ist eine Bahnkontrolle nötig.",
+        "On final: “continuing approach”, then a runway inspection is needed."
+       ]
+      ]
+     },
+     {
+      "de": "Notfall-Häufigkeit im Startbildschirm:",
+      "en": "Emergency frequency on the start screen:",
+      "sub": [
+       [
+        "Aus",
+        "Off"
+       ],
+       [
+        "Realistisch (Standard): der erste nach 15–30 min, danach etwa alle 25–45 min",
+        "Realistic (default): the first one after 15–30 min, then about every 25–45 min"
+       ],
+       [
+        "Training: alle paar Minuten",
+        "Training: every few minutes"
+       ]
+      ]
+     },
+     {
+      "de": "Das Tutorial hat einen neuen Schritt zum Telefon und Feuerwehr-Alarm.",
+      "en": "The tutorial has a new step for the phone and the fire brigade alert."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.8.0",
+  "date": null,
+  "title": {
+   "de": "Notfälle, Squawks & Tutorial",
+   "en": "Emergencies, squawks & tutorial"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Squawk-Codes für alle Flugzeuge.",
+      "en": "Squawk codes for every aircraft.",
+      "sub": [
+       [
+        "Sie stehen in den Flugdaten und lassen sich mit SQ4721 oder „squawk four seven two one“ ändern.",
+        "Shown in the flight data and changeable with SQ4721 or “squawk four seven two one”."
+       ],
+       [
+        "Mit CSQ bzw. „confirm squawk“ fragst du den Code ab.",
+        "CSQ / “confirm squawk” asks for the code."
+       ]
+      ]
+     },
+     {
+      "de": "Hover-Infos: Maus über Flugzeug oder Label zeigt [Callsign], Typ, Start → Ziel, Squawk, RFL/CFL/XFL und Routing.",
+      "en": "Hover info: moving the mouse over an aircraft or its label shows [callsign], type, departure → destination, squawk, RFL/CFL/XFL and routing."
+     },
+     {
+      "de": "Notfälle:",
+      "en": "Emergencies:",
+      "sub": [
+       [
+        "Medizinischer Notfall (PAN PAN)",
+        "Medical (PAN PAN)"
+       ],
+       [
+        "Triebwerksausfall (MAYDAY): Abflüge kehren zurück, im Center gibt es einen Drift-down.",
+        "Engine failure (MAYDAY): departures return, center traffic drifts down."
+       ],
+       [
+        "Druckverlust mit Notabstieg auf FL100 (Center)",
+        "Pressurisation loss with an emergency descent to FL100 (center)"
+       ],
+       [
+        "Hydraulikausfall (PAN)",
+        "Hydraulic failure (PAN)"
+       ],
+       [
+        "7600 Funkausfall: Das Flugzeug antwortet nicht, fliegt nach Flugplan und im Anflug selbst aufs ILS.",
+        "7600 radio failure: the aircraft does not answer, follows its flight plan and flies the ILS on its own."
+       ],
+       [
+        "7500 Entführung",
+        "7500 unlawful interference"
+       ],
+       [
+        "Notfälle blinken rot mit EMG/RCF/HIJ im Label.",
+        "Emergency targets blink red with EMG/RCF/HIJ in the label."
+       ],
+       [
+        "Bestätigen mit „roger MAYDAY/PAN“ oder ACK.",
+        "Acknowledge with “roger MAYDAY/PAN” or ACK."
+       ],
+       [
+        "Im Center leitest du mit D EDDF oder den Buttons zu einem Ausweichflughafen um.",
+        "In center mode, divert with D EDDF or the buttons."
+       ],
+       [
+        "Wertung: sichere Landung +20, Übergabe +15, Bestätigung +5, keine Bestätigung −10.",
+        "Scoring: safe landing +20, handoff +15, acknowledgement +5, no acknowledgement −10."
+       ]
+      ]
+     },
+     {
+      "de": "Ladeanimation beim Schichtstart: drehendes Radar mit AERA-Logo und Ladebalken.",
+      "en": "Loading animation when a shift starts: rotating radar with the AERA logo and a progress bar."
+     },
+     {
+      "de": "Interaktives Tutorial (Köln, DE/EN): Schritt für Schritt von Identifizieren über Kurs, Höhe, Speed, ILS und Tower-Übergabe bis RBL, Hover und Notfall.",
+      "en": "Interactive tutorial (Cologne, DE/EN): step by step from identifying through heading, altitude, speed, ILS and tower handoff to RBL, hover and an emergency."
+     }
+    ]
+   },
+   {
+    "kind": "imp",
+    "items": [
+     {
+      "de": "RBL (Abstandslinie):",
+      "en": "RBL (range/bearing line):",
+      "sub": [
+       [
+        "Sie fängt Flugzeuge auch beim Klick aufs Label.",
+        "It also locks onto aircraft when you click their label."
+       ],
+       [
+        "Sie ist durchgezogen statt gestrichelt.",
+        "It is solid instead of dashed."
+       ],
+       [
+        "Sie endet mit dem zweiten Klick, also sind mehrere Linien an verschiedenen Stellen möglich.",
+        "It ends with the second click, so you can draw several lines in different places."
+       ],
+       [
+        "Callsigns stehen in [ ].",
+        "Callsigns appear in [ ]."
+       ]
+      ]
+     },
+     {
+      "de": "Center-Routen:",
+      "en": "Center routes:",
+      "sub": [
+       [
+        "Die Flieger folgen der direkten Linie Start → Ziel über echte Wegpunkte, statt im Zickzack übers Airway-Netz zu fliegen.",
+        "Aircraft follow the direct line from departure to destination via real waypoints instead of zig-zagging through the airway network."
+       ],
+       [
+        "Die Routen sind höchstens etwa 6 % länger als die Luftlinie.",
+        "Routes are at most about 6 % longer than the straight line."
+       ],
+       [
+        "Ein- und Ausflugsektor passen zur Flugrichtung.",
+        "Entry and exit sectors match the direction of flight."
+       ]
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.7.1",
+  "date": null,
+  "title": {
+   "de": "Fix für die deutsche Stimme",
+   "en": "German voice fix"
+  },
+  "sections": [
+   {
+    "kind": "fix",
+    "items": [
+     {
+      "de": "Die deutsche Stimme (Thorsten) fiel auf die englische zurück („aɪ is not a single codepoint“). AERA bereinigt die Konfig-Datei jetzt automatisch.",
+      "en": "The German voice (Thorsten) fell back to the English one (“aɪ is not a single codepoint”). AERA now cleans up the voice config automatically."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.7.0",
+  "date": null,
+  "title": {
+   "de": "Center-Modus & Installer",
+   "en": "Center mode & installer"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Richtiger Windows-Installer mit Sprachwahl (Deutsch/English):",
+      "en": "Proper Windows installer with a language choice (Deutsch/English):",
+      "sub": [
+       [
+        "Startmenü- und optionale Desktop-Verknüpfung",
+        "Start menu shortcut and optional desktop shortcut"
+       ],
+       [
+        "Deinstallation über „Apps“",
+        "uninstall via “Apps”"
+       ],
+       [
+        "keine Admin-Rechte nötig",
+        "no admin rights needed"
+       ]
+      ]
+     },
+     {
+      "de": "Englische Version der kompletten Oberfläche. Umschalten im Startbildschirm (DE | EN) oder in den Einstellungen.",
+      "en": "English version of the whole interface. Switch on the start screen (DE | EN) or in the settings."
+     },
+     {
+      "de": "Center-Modus (Langen Radar Gießen/Taunus FL100–245, Rhein Radar Frankfurt FL245–UNL):",
+      "en": "Center mode (Langen Radar Gießen/Taunus FL100–245, Rhein Radar Frankfurt FL245–UNL):",
+      "sub": [
+       [
+        "echte Sektoren und Nachbarfrequenzen",
+        "real sectors and neighbour frequencies"
+       ],
+       [
+        "XFL und nächster Sektor im Label, amber kurz vor dem Sektorausflug",
+        "XFL and next sector in the label, amber shortly before the aircraft leaves the sector"
+       ],
+       [
+        "Übergaben mit HO",
+        "handoffs with HO"
+       ],
+       [
+        "RON und Mach-Zahl (M78)",
+        "RON and Mach numbers (M78)"
+       ]
+      ]
+     },
+     {
+      "de": "Flugpläne:",
+      "en": "Flight plans:",
+      "sub": [
+       [
+        "Start → Ziel (ICAO), RFL und Typ in den Flugdaten",
+        "Departure → destination (ICAO), RFL and type in the flight data"
+       ],
+       [
+        "Die Route der Abflüge geht über das SID-Ende hinaus.",
+        "Departure routes continue beyond the end of the SID."
+       ],
+       [
+        "Label-Zeile 4 zeigt bei Abflügen Ziel und RFL.",
+        "Label line 4 shows destination and RFL for departures."
+       ]
+      ]
+     },
+     {
+      "de": "Frankfurt: ILS auch auf 25C/07C, zusätzlich zum Visual Swing.",
+      "en": "Frankfurt: ILS to 25C/07C as well, in addition to the visual swing."
+     }
+    ]
+   },
+   {
+    "kind": "impfix",
+    "items": [
+     {
+      "de": "Im ILS regeln die Piloten die Speed selbst (220 → 190 → 170 → 160 kt, ab 5 NM Anfluggeschwindigkeit). Damit gibt es keine unnötigen Durchstarts mehr.",
+      "en": "Pilots manage their own speed on the ILS (220 → 190 → 170 → 160 kt, approach speed from 5 NM). No more needless go-arounds."
+     },
+     {
+      "de": "Keine MVA-Strafe mehr im Fehlanflug und bei steigenden Abflügen.",
+      "en": "No MVA penalty on a missed approach or for climbing departures."
+     },
+     {
+      "de": "Absturz beim Wechsel von Flughafen oder Modus über das Menü behoben.",
+      "en": "Fixed a crash when switching airport or mode via the menu."
+     },
+     {
+      "de": "maintain mach decimal seven eight wird jetzt erkannt.",
+      "en": "maintain mach decimal seven eight is now recognised."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.6.0",
+  "date": null,
+  "title": {
+   "de": "Frankfurt ist da",
+   "en": "Frankfurt arrives"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Frankfurt (EDDF) als zweiter Flughafen:",
+      "en": "Frankfurt (EDDF) as the second airport:",
+      "sub": [
+       [
+        "Betriebsrichtungen West (25R/25L) und Ost (07L/07R)",
+        "west (25R/25L) and east (07L/07R) operations"
+       ],
+       [
+        "Bahn 18 nur für Abflüge",
+        "runway 18 for departures only"
+       ],
+       [
+        "echte STARs, SIDs und Fixe",
+        "real STARs, SIDs and fixes"
+       ]
+      ]
+     },
+     {
+      "de": "Visual Swing in Frankfurt: „are you able for a visual swing to 25C“, dann „cleared visual approach 25C“. Er ist nur von 25L→25C bzw. 07R→07C möglich, nicht von 25R, und nur bei Sicht.",
+      "en": "Visual swing in Frankfurt: “are you able for a visual swing to 25C”, then “cleared visual approach 25C”. It is only possible from 25L→25C or 07R→07C, not from 25R, and only in visual conditions."
+     },
+     {
+      "de": "RBL (Abstandslinie): Doppelklick startet sie. Sie zeigt Abstand, Kurs und Flugzeit, zwischen zwei Flugzeugen auch Höhenunterschied und Annäherung. C oder Esc löscht alle Linien.",
+      "en": "RBL (range/bearing line): a double-click starts it. It shows distance, bearing and flight time, and between two aircraft also the level difference and closure. C or Esc clears all lines."
+     },
+     {
+      "de": "„Disregard“ verwirft den Funkspruch, niemand antwortet.",
+      "en": "“Disregard” discards the transmission, and nobody replies."
+     }
+    ]
+   },
+   {
+    "kind": "fix",
+    "items": [
+     {
+      "de": "In Köln starteten alle Flieger wegen der MVA durch. Ab der ILS-Freigabe gilt die MVA nicht mehr, und der Gleitpfad wird von oben sanfter gefangen.",
+      "en": "In Cologne every aircraft went around because of the MVA. The MVA no longer applies once the ILS is cleared, and the glideslope is captured from above more gently."
+     },
+     {
+      "de": "Die deutsche Stimme blieb stumm. Sie fällt jetzt pro Satzteil auf die englische zurück, und der Fehler steht im Log.",
+      "en": "The German voice stayed silent. It now falls back to the English voice per phrase, and the error shows in the log."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.5.1",
+  "date": null,
+  "title": {
+   "de": "Natürlicherer Funk",
+   "en": "More natural radio"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Begrüßungen und Verabschiedungen. Deutsche Crews sagen „Moin“, „Servus“ oder „Tschüss“ mit deutscher Stimme statt mit englischem Akzent.",
+      "en": "Greetings and goodbyes. German crews say “Moin”, “Servus” or “Tschüss” in a German voice instead of with an English accent."
+     },
+     {
+      "de": "„Identified“ ohne Readback.",
+      "en": "“Identified” without a readback."
+     },
+     {
+      "de": "Mehrere Befehle in einem Funkspruch (z. B. Kurs + Höhe + Speed). Fehlt ein Teil, fragt der Pilot gezielt nach („say again the heading“).",
+      "en": "Several instructions in one transmission (e.g. heading + altitude + speed). If a part is missing, the pilot asks specifically (“say again the heading”)."
+     },
+     {
+      "de": "Unscharfe Erkennung von Wegpunkten (z. B. „DC627“ → DK627).",
+      "en": "Fuzzy matching of waypoints (e.g. “DC627” → DK627)."
+     },
+     {
+      "de": "Label-Zeile 4 zeigt ILS, LOC oder GS, nach der Übergabe die Frequenz.",
+      "en": "Label line 4 shows ILS, LOC or GS, and the frequency after the handoff."
+     },
+     {
+      "de": "Frequenzen stehen im Funk-Panel, auch bei Übergaben.",
+      "en": "Frequencies in the radio panel, including for handoffs."
+     },
+     {
+      "de": "Realistisches Radar-Update alle 4 Sekunden, umschaltbar auf flüssig.",
+      "en": "Realistic radar update every 4 seconds, switchable to smooth."
+     }
+    ]
+   },
+   {
+    "kind": "fix",
+    "items": [
+     {
+      "de": "Flüge mit ILS-Freigabe flogen am Ende der Transition einen Holding, statt den Localizer zu fangen.",
+      "en": "Aircraft cleared for the ILS flew a hold at the end of the transition instead of intercepting the localizer."
+     },
+     {
+      "de": "Unter FL100 maximal 250 kt. Die Piloten bremsen vor FL100 ab, das Label zeigt die IAS.",
+      "en": "Max. 250 kt below FL100. Pilots slow down before FL100, and the label shows IAS."
+     },
+     {
+      "de": "Piloten reden nicht mehr dazwischen, während du sendest.",
+      "en": "Pilots no longer talk while you transmit."
+     },
+     {
+      "de": "Abflüge waren etwas zu schnell.",
+      "en": "Departures were slightly too fast."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.5.0",
+  "date": null,
+  "title": {
+   "de": "Aus wird AERA",
+   "en": "Becoming AERA"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Rebranding zu AERA – Airspace & Enroute Radar Authority mit neuem Logo, App-Icon und Farben (Navy, Blue, Grey, White) sowie den Schriften Inter und Space Grotesk.",
+      "en": "Rebrand to AERA – Airspace & Enroute Radar Authority with a new logo, app icon and colours (navy, blue, grey, white) and the fonts Inter and Space Grotesk."
+     },
+     {
+      "de": "Einstellungen:",
+      "en": "Settings:",
+      "sub": [
+       [
+        "Ein- und Ausgabegerät, Funk-Lautstärke, Funkeffekt, Rauschen, Sprechtempo",
+        "input and output device, radio volume, radio effect, noise, speech rate"
+       ],
+       [
+        "Mikrofon-Test mit Pegelanzeige und Aufnahme",
+        "microphone test with level meter and recording"
+       ],
+       [
+        "frei wählbare Sende-Taste (PTT)",
+        "freely chosen push-to-talk key"
+       ],
+       [
+        "Auswahl der Spracherkennung",
+        "choice of speech recognition model"
+       ]
+      ]
+     },
+     {
+      "de": "Download-Anzeige für Stimmen und Spracherkennung: Fortschritt pro Datei, Fehlermeldung und erneut versuchen.",
+      "en": "Download display for voices and speech recognition: progress per file, error message and retry."
+     }
+    ]
+   },
+   {
+    "kind": "fix",
+    "items": [
+     {
+      "de": "„Mikrofon: network“: Die Desktop-App nutzt nur noch Whisper und keine Browser-Spracherkennung mehr.",
+      "en": "“Mikrofon: network”: the desktop app now uses only Whisper and no longer the browser's speech recognition."
+     },
+     {
+      "de": "Der Installer startete nicht. Ausgeliefert wurde deshalb vorerst eine portable Version als Zip.",
+      "en": "The installer did not start. For now a portable version was shipped as a zip instead."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.4.0",
+  "date": null,
+  "title": {
+   "de": "Die erste Version",
+   "en": "The first version"
+  },
+  "sections": [
+   {
+    "kind": "first",
+    "items": [
+     {
+      "de": "Köln/Bonn Approach (EDDK) als eigene Desktop-App für Windows:",
+      "en": "Cologne/Bonn Approach (EDDK) as its own desktop app for Windows:",
+      "sub": [
+       [
+        "echte Callsigns und Airlines, echte Fixe, Transitions und SIDs",
+        "real callsigns and airlines, real fixes, transitions and SIDs"
+       ],
+       [
+        "Live-METAR",
+        "live METAR"
+       ]
+      ]
+     },
+     {
+      "de": "Echtes Radar-Kartenbild mit Mindestflughöhen (MVA) und Sperrgebieten (ED-R), Stile AERA und PHOENIX.",
+      "en": "Real radar map with minimum vectoring altitudes (MVA) and restricted areas (ED-R), styles AERA and PHOENIX."
+     },
+     {
+      "de": "Spracheingabe über Whisper, offline.",
+      "en": "Voice input via Whisper, offline."
+     },
+     {
+      "de": "Sprechende Piloten mit neuronalen Piper-Stimmen und Funkeffekt.",
+      "en": "Talking pilots with neural Piper voices and a radio effect."
+     },
+     {
+      "de": "Eigenes UX-Design und Logo, Schrift passend zu dev-dsue.de, Credit „by Desue“.",
+      "en": "Own UX design and logo, font matching dev-dsue.de, credit “by Desue”."
+     }
+    ]
+   }
+  ]
+ }
+]
