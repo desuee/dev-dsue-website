@@ -60,9 +60,21 @@ const HEAD = [
   [/^(erste version|first version|first release|erstes release)$/i, 'first'],
 ];
 const EN_HEAD = /^(new|new features?|added|improved|improvements?|changed|changes|fixed|fixes|bug ?fixes|first version|first release|improved\s*[\/&+]\s*fixed)$/i;
+function kindOf(t) { const h = HEAD.find(x => x[0].test(t)); return h ? h[1] : null; }
+// "Neu / New" → same kind in both languages (bilingual block); "Verbessert / Behoben" → impfix
+function headOf(plain) {
+  const k = kindOf(plain); if (k) return { kind: k, bi: false };
+  const parts = plain.split(/\s*[\/|]\s*/);
+  if (parts.length === 2) {
+    const a = kindOf(parts[0]), b = kindOf(parts[1]);
+    if (a && b) return a === b ? { kind: a, bi: true } : { kind: (a === 'imp' && b === 'fix') || (a === 'fix' && b === 'imp') ? 'impfix' : a, bi: false };
+  }
+  if (parts.length === 4) { const a = kindOf(parts[0] + ' / ' + parts[1]); if (a) return { kind: a, bi: true }; }
+  return null;
+}
 function parseText(txt) {
-  const blocks = []; let cur = null, lang = null, sec = null, item = null;
-  const start = (version, title) => { cur = { version, title, lang, sections: [] }; blocks.push(cur); sec = null; item = null; };
+  const blocks = []; let cur = null, lang = null, sec = null, item = null, last = null;
+  const start = (version, title) => { cur = { version, title, lang, bi: false, sections: [] }; blocks.push(cur); sec = null; item = null; last = null; };
   for (const raw of txt.replace(/\r/g, '').split('\n')) {
     if (!raw.trim()) continue;
     const indent = raw.match(/^[ \t]*/)[0].replace(/\t/g, '    ').length;
@@ -72,32 +84,41 @@ function parseText(txt) {
     if (/^\d{1,2}\.\s?[A-Za-zÄÖÜäöü]+\.?\s\d{4}/.test(line) || /(^|\s)@\w+/.test(line)) continue;   // date / author line
     const bullet = line.match(/^([-–•*◦▪·]|\d+[.)])\s+(.*)$/);
     const plain = line.replace(/:$/, '').trim();
-    const head = !bullet && HEAD.find(h => h[0].test(plain));
+    const head = !bullet && headOf(plain);
     const ver = !bullet && !head && line.match(/^(?:[A-Za-zÄÖÜäöü][\w .&-]{0,40}?\s+)?v?(\d+\.\d+(?:\.\d+)?)(?:\s*[–—:-]\s*(.+))?$/);
     if (ver && !/changelog/i.test(line)) { start(ver[1], ver[2] ? ver[2].trim() : ''); continue; }
     if (/changelog/i.test(line) && !bullet) continue;   // document title
     if (!cur) start('', '');
     if (head) {
-      if (!cur.lang) cur.lang = EN_HEAD.test(plain) ? 'en' : 'de';
-      sec = { kind: head[1], items: [] }; cur.sections.push(sec); item = null; continue;
+      if (head.bi) cur.bi = true;
+      else if (!cur.lang) cur.lang = EN_HEAD.test(plain) ? 'en' : 'de';
+      sec = { kind: head.kind, items: [] }; cur.sections.push(sec); item = null; last = null; continue;
     }
     if (!sec) { sec = { kind: 'new', items: [] }; cur.sections.push(sec); }
     const text = bullet ? bullet[2].trim() : line;
     const isSub = item && (line.startsWith('◦') || (bullet && indent >= 2));
-    if (isSub) item.sub.push(text);
-    else if (bullet || !item) { item = { text, sub: [] }; sec.items.push(item); }
+    if (isSub) { item.sub.push(text); item.subEn.push(''); last = 'sub'; }
+    else if (bullet || !item) { item = { text, en: '', sub: [], subEn: [] }; sec.items.push(item); last = 'item'; }
+    else if (cur.bi) {
+      // bilingual: the line under a point is its English version
+      if (last === 'sub') { const i = item.sub.length - 1; item.subEn[i] = item.subEn[i] ? item.subEn[i] + ' ' + text : text; }
+      else item.en = item.en ? item.en + ' ' + text : text;
+    }
     else if (item.sub.length) item.sub[item.sub.length - 1] += ' ' + text;
     else item.text += ' ' + text;
   }
-  // pair the German and English block of each version
+  const conv = it => ({ de: it.text, en: it.en, sub: it.sub.map((x, k) => [x, it.subEn[k] || '']) });
+  // pair the German and English block of each version (a bilingual block is complete on its own)
   const out = [], byVer = new Map();
   blocks.forEach((b, i) => {
     const key = b.version || '#' + i;
+    if (b.bi) { out.push({ version: b.version, bi: b }); return; }
     if (!b.lang) b.lang = byVer.has(key) && byVer.get(key).de ? 'en' : 'de';
     if (!byVer.has(key)) { const o = { version: b.version }; byVer.set(key, o); out.push(o); }
     byVer.get(key)[b.lang] = b;
   });
   return out.map(o => {
+    if (o.bi) return { version: o.version, date: today(), title: { de: o.bi.title || '', en: '' }, sections: o.bi.sections.map(s => ({ kind: s.kind, items: s.items.map(conv) })) };
     const de = o.de || { sections: [], title: '' }, en = o.en || { sections: [], title: '' };
     const base = de.sections.length >= en.sections.length ? de.sections : en.sections;
     return {
@@ -171,7 +192,7 @@ function drawEditor(showImport) {
   <details class="st-import" ${showImport ? 'open' : ''}>
     <summary><svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>Text einfügen <span class="muted small">– Changelog so reinkopieren, wie du ihn schreibst</span></summary>
     <textarea id="impText" placeholder="AERA 0.8.3&#10;&#10;Neu&#10;- Erster Punkt&#10;  - Unterpunkt&#10;Behoben&#10;- …&#10;&#10;AERA 0.8.3&#10;&#10;New&#10;- First point&#10;  - Sub-point&#10;Fixed&#10;- …"></textarea>
-    <div class="st-row"><span class="muted small">Erkennt Neu/New, Verbessert/Improved, Behoben/Fixed, Aufzählungen mit - • * und eingerückte Unterpunkte. Deutsch und Englisch nacheinander.</span><button class="btn" id="impBtn">Übernehmen</button></div>
+    <div class="st-row"><span class="muted small">Zwei Schreibweisen gehen: erst alles auf Deutsch, dann alles auf Englisch – oder „Neu / New“ mit der englischen Zeile eingerückt direkt unter jedem Punkt.</span><button class="btn" id="impBtn">Übernehmen</button></div>
   </details>
   <div id="secs">${draft.sections.map(secHtml).join('')}</div>
   <button class="btn st-add" data-act="addSec"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Abschnitt</button>`}
