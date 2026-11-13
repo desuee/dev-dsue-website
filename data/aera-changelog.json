@@ -1,5 +1,80 @@
 [
  {
+  "version": "0.9.1",
+  "date": "2026-11-13",
+  "title": {
+   "de": "Hands on the Scope",
+   "en": "Hands on the Scope"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Labels frei verschiebbar",
+      "en": "Labels can be moved freely",
+      "sub": [
+       [
+        "mit gedrückter linker Maustaste an eine beliebige Stelle ziehen",
+        "Drag them anywhere with the left mouse button"
+       ],
+       [
+        "Verbindungslinie vom Flugzeug zum Label",
+        "Leader line from the aircraft to its label"
+       ]
+      ]
+     },
+     {
+      "de": "Auswahllisten direkt im Label",
+      "en": "Pick lists right in the label",
+      "sub": [
+       [
+        "Klick auf Höhe (CFL), Kurs oder Speed öffnet eine Liste",
+        "Click altitude (CFL), heading or speed to open a list"
+       ],
+       [
+        "aktueller Wert grün markiert, ein Klick gibt die Anweisung",
+        "Current value marked green, one click issues the instruction"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "kind": "imp",
+    "items": [
+     {
+      "de": "Nachbarsektoren rufen nur noch bei besonderen Situationen an",
+      "en": "Neighbouring sectors only call in special situations",
+      "sub": [
+       [
+        "kein Anruf mehr bei normalen Übergaben",
+        "No more calls for normal handoffs"
+       ],
+       [
+        "Anruf nur, wenn ein Flieger kurz vor der Grenze nicht auf seiner XFL freigegeben ist",
+        "A call only comes when an aircraft near the boundary is not cleared to its XFL"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "kind": "fix",
+    "items": [
+     {
+      "de": "Start-Animation konnte im ersten Bild hängen bleiben",
+      "en": "The startup animation could freeze on the first frame"
+     },
+     {
+      "de": "Infofenster lag über der Auswahlliste",
+      "en": "The hover info box covered the pick list"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "version": "0.9.0",
   "date": "2026-11-13",
   "title": {
