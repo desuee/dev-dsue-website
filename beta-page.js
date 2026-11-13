@@ -22,6 +22,22 @@
   };
   var card = document.getElementById('card'), me = null, rel = null, err = new URLSearchParams(location.search).get('e');
   var esc = function (t) { return String(t || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  // tiny markdown for the release notes: headings, lists, bold, italics, code, links, rules
+  var md = function (t) {
+    var inl = function (x) { return esc(x).replace(/\*\*(.+?)\*\*/g, '<b style="color:#fff">$1</b>').replace(/(^|[^*])\*([^*]+)\*/g, '$1<i>$2</i>').replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" rel="noopener" target="_blank">$1</a>'); };
+    var out = [], list = null;
+    String(t || '').replace(/\r/g, '').split('\n').forEach(function (l) {
+      var m = l.match(/^\s*[-*•]\s+(.*)/), sub = /^\s{2,}[-*•]/.test(l);
+      if (m) { if (!list) { out.push('<ul>'); list = 1; } out.push('<li' + (sub ? ' class="sub"' : '') + '>' + inl(m[1]) + '</li>'); return; }
+      if (list) { out.push('</ul>'); list = null; }
+      if (/^\s*(---|___|\*\*\*)\s*$/.test(l)) out.push('<hr>');
+      else if (m = l.match(/^(#{1,4})\s+(.*)/)) out.push('<h' + (m[1].length + 2) + '>' + inl(m[2]) + '</h' + (m[1].length + 2) + '>');
+      else if (l.trim()) out.push('<p>' + inl(l) + '</p>');
+    });
+    if (list) out.push('</ul>');
+    return out.join('');
+  };
   var mb = function (b) { return (b / 1048576).toFixed(b > 1e8 ? 0 : 1) + ' MB'; };
   var day = function (d) { try { return new Date(d).toLocaleDateString(L === 'de' ? 'de-DE' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return ''; } };
   var dIco = '<svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>';
@@ -51,7 +67,7 @@
     card.innerHTML = head + '<p class="bt-meta">' + t.latest + '</p><div class="bt-ver"><b>' + esc(r.tag) + '</b>' + (r.name && r.name !== r.tag ? '<span style="font-size:18px;color:#fff">' + esc(r.name) + '</span>' : '') +
       '<span class="bt-pill">BETA</span><span class="bt-meta">' + day(r.date) + '</span></div>' +
       '<div class="bt-files">' + (files || '<p>' + t.none + '</p>') + '</div>' +
-      (r.notes ? '<div class="bt-notes"><b style="color:#fff">' + t.notes + '</b>\n\n' + esc(r.notes) + '</div>' : '') +
+      (r.notes ? '<div class="bt-notes">' + md(r.notes) + '</div>' : '') +
       (old ? '<details class="bt-older"><summary>' + t.older + '</summary><ul>' + old + '</ul></details>' : '');
   }
 
