@@ -1,5 +1,159 @@
 [
  {
+  "version": "0.9.0",
+  "date": "2026-11-13",
+  "title": {
+   "de": "Pick Up the Phone",
+   "en": "Pick up the phone!"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Approach-Tutorial komplett neu",
+      "en": "Approach tutorial completely rebuilt",
+      "sub": [
+       [
+        "5 Kapitel mit Übungen: Directs, Sinkrate, Staffelung, Holding, Abflüge, Notfälle",
+        "5 chapters with exercises: directs, rate of descent, separation, holding, departures, emergencies"
+       ]
+      ]
+     },
+     {
+      "de": "Eigenes Center-Tutorial",
+      "en": "Separate Center tutorial",
+      "sub": [
+       [
+        "Übernahme, XFL, Directs, Übergabe",
+        "Accepting, XFL, directs, handoff"
+       ]
+      ]
+     },
+     {
+      "de": "Schwierigkeitsstufen im Startbildschirm",
+      "en": "Difficulty levels on the start screen",
+      "sub": [
+       [
+        "Approach „Schwer“, Center „Sehr schwer“",
+        "Approach \"Hard\", Center \"Very hard\""
+       ],
+       [
+        "Center wird erst nach einem Tutorial oder einer Approach-Schicht empfohlen",
+        "Center is recommended only after a tutorial or an Approach shift"
+       ]
+      ]
+     },
+     {
+      "de": "QDM-Linie per Taste",
+      "en": "QDM line by key",
+      "sub": [
+       [
+        "Q halten und zeigen, oder Shift + Ziehen",
+        "Hold Q and point, or Shift + drag"
+       ],
+       [
+        "zeigt den windkorrigierten Kurs zum Ziel",
+        "Shows the wind-corrected heading to the target"
+       ]
+      ]
+     },
+     {
+      "de": "Sinkrate/Steigrate vorgeben",
+      "en": "Assign rate of climb/descent",
+      "sub": [
+       [
+        "VS1500 oder „descend at 1500 feet per minute“, VSN gibt sie wieder frei",
+        "VS1500 or \"descend at 1500 feet per minute\", VSN releases it"
+       ],
+       [
+        "Rate steht im Label, z. B. -2000 beim Sinken, +1500 beim Steigen",
+        "The rate is shown in the label, e.g. -2000 descending, +1500 climbing"
+       ],
+       [
+        "ohne Vorgabe wählen die Piloten weiter selbst",
+        "Without one, pilots still choose their own"
+       ]
+      ]
+     },
+     {
+      "de": "Telefon mit Ton",
+      "en": "Telephone with sound",
+      "sub": [
+       [
+        "Wählton, Klingeln, Abheben",
+        "Dialling, ringing, pickup"
+       ],
+       [
+        "gesprochene Gespräche mit Telefonklang",
+        "Spoken conversations with a phone filter"
+       ],
+       [
+        "Nachbarsektoren rufen selbst an",
+        "Neighbouring sectors call you"
+       ]
+      ]
+     },
+     {
+      "de": "Alarmtöne",
+      "en": "Alert sounds",
+      "sub": [
+       [
+        "Feuerwehr-Gong bei Vollalarm",
+        "Fire-alarm gong on full emergency"
+       ],
+       [
+        "Alarmton bei Notfällen",
+        "Alert tone for emergencies"
+       ],
+       [
+        "STCA-Warnton bei drohenden Konflikten",
+        "STCA tone for upcoming conflicts"
+       ]
+      ]
+     },
+     {
+      "de": "Live-Verkehr (experimentell, optional)",
+      "en": "Live traffic (experimental, optional)",
+      "sub": [
+       [
+        "echte Flüge (airplanes.live) als Startpunkt für Anflüge",
+        "Real flights (airplanes.live) as the starting point for arrivals"
+       ],
+       [
+        "standardmäßig aus",
+        "Off by default"
+       ]
+      ]
+     },
+     {
+      "de": "Neue Intro-Animation beim App-Start",
+      "en": "New intro animation at app start"
+     },
+     {
+      "de": "Auswertungsbildschirm mit ✕, „Hauptmenü“ und „Radarbild ansehen“",
+      "en": "Debrief screen with ✕, \"Main menu\" and \"View radar\""
+     }
+    ]
+   },
+   {
+    "kind": "imp",
+    "items": [
+     {
+      "de": "Fairness",
+      "en": "Fairness",
+      "sub": [
+       [
+        "Erstanrufe kommen nie gleichzeitig",
+        "Initial calls never overlap"
+       ]
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
   "version": "0.8.2",
   "date": "2026-11-12",
   "title": {
