@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AERA – Beta</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#07111f">
+<link rel="icon" type="image/png" href="/img/aera-favicon.png">
+<link rel="apple-touch-icon" href="/img/aera-touch-icon.png">
+<link rel="stylesheet" href="/aera.css?v=2">
+<style>
+.bt-hero{position:relative;padding:150px 0 40px;overflow:hidden}
+.bt-hero .in{position:relative;z-index:2}.bt-hero .scope{top:-520px}
+.bt-hero h1{margin:0;font:700 clamp(40px,6vw,68px)/1.04 var(--head);letter-spacing:-.03em}
+.bt-hero .sub{max-width:640px}
+.bt-body{padding-bottom:110px;min-height:40vh}
+.bt-card{position:relative;max-width:820px;padding:30px 32px;border-radius:20px;background:var(--panel);border:1px solid var(--line);box-shadow:0 30px 80px #0006}
+.bt-card h2{margin:0 0 6px;font:700 30px/1.15 var(--head);letter-spacing:-.02em}
+.bt-card p{color:var(--grey);margin:6px 0 0}
+.bt-user{display:flex;align-items:center;gap:12px;margin-bottom:22px;color:var(--grey);font-size:14.5px}
+.bt-user img{width:36px;height:36px;border-radius:50%;border:1px solid var(--line2)}
+.bt-user a{margin-left:auto;color:var(--muted);font-size:13.5px}
+.bt-ver{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.bt-ver b{font:700 40px/1 var(--mono);color:#fff;letter-spacing:-.02em}
+.bt-pill{padding:4px 11px;border-radius:999px;font:600 12.5px var(--mono);background:#3ddc971f;color:#3ddc97;border:1px solid #3ddc9744}
+.bt-meta{font:500 13px var(--mono);color:var(--muted)}
+.bt-files{display:flex;flex-direction:column;gap:10px;margin:24px 0 6px}
+.bt-files .btn{justify-content:space-between;width:100%;max-width:520px}
+.bt-files .btn small{font:500 12.5px var(--mono);opacity:.75}
+.bt-notes{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);white-space:pre-wrap;font-size:14.5px;color:var(--grey);max-height:340px;overflow:auto}
+.bt-older{margin-top:26px}.bt-older summary{cursor:pointer;color:var(--sky);font-weight:600}
+.bt-older ul{list-style:none;padding:0;margin:12px 0 0}.bt-older li{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--grey)}
+.bt-older li a{margin-left:auto;color:var(--sky)}
+.bt-discord{background:#5865F2!important;color:#fff!important;border-color:#5865F2!important}
+.bt-discord:hover{box-shadow:0 10px 30px #5865f266}
+.bt-err{margin-top:18px;padding:12px 16px;border-radius:12px;background:#ff5a6a14;border:1px solid #ff5a6a44;color:#ffb3bb;font-size:14.5px}
+.bt-steps{margin:18px 0 0;padding-left:20px;color:var(--grey)}.bt-steps li{margin:4px 0}
+</style>
+</head>
+<body class="cl-page">
+
+<header class="nav solid" id="nav">
+  <div class="in">
+    <a class="brand" href="/aera"><img src="/img/aera-icon.png" alt=""><span><b>AERA</b><small>Airspace &amp; Enroute Radar Authority</small></span></a>
+    <nav>
+      <a href="/aera#features">Features</a>
+      <a href="/aera#screens">Screenshots</a>
+      <a href="/aera/changelog">Changelog</a>
+      <a href="/beta" class="on">Beta</a>
+    </nav>
+    <div class="lang"><button data-lang="de">DE</button><button data-lang="en">EN</button></div>
+    <a class="back" href="/aera" title="AERA"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><span>AERA</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="bt-hero">
+    <div class="scope" aria-hidden="true"><div class="sweep"></div></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="in">
+      <p class="eyebrow"><span class="slashes"></span>Beta</p>
+      <h1 data-de="Beta-Tester-Bereich." data-en="Beta tester area.">Beta-Tester-Bereich.</h1>
+      <p class="sub" data-de="Hier lädst du immer den neuesten AERA-Build. Anmeldung mit deinem Discord-Konto – Zugang hat, wer auf dem AERA-Server die Rolle Beta Tester hat." data-en="Always get the newest AERA build here. Sign in with your Discord account – everyone with the Beta Tester role on the AERA server has access.">Hier lädst du immer den neuesten AERA-Build.</p>
+    </div>
+  </section>
+
+  <section class="in bt-body">
+    <div class="bt-card" id="card"><p class="bt-meta">…</p></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="in">
+    <span class="fl"><img src="/img/aera-icon.png" alt=""><span>AERA · <span data-de="ein Spiel von" data-en="a game by">ein Spiel von</span> <a href="/">Desue</a></span></span>
+    <span class="sp"></span>
+    <a href="/">dev-dsue.de</a>
+    <a href="/impressum.html">Impressum</a>
+    <a href="/datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+  </div>
+</footer>
+<script src="/beta-page.js"></script>
+</body>
+</html>

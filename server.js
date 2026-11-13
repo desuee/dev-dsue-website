@@ -62,7 +62,8 @@ async function withBox(s, folder, fn) {
 }
 
 const mock = MOCK ? require('./mock') : null;
-const studio = require('./studio');   // /admin/studio: changelogs + program downloads (writes to GitHub)
+const studio = require('./studio');
+const beta = require('./beta');      // /beta: Discord sign-in + private beta downloads (see beta.js)   // /admin/studio: changelogs + program downloads (writes to GitHub)
 
 const api = {
   async folders(s) {
@@ -167,7 +168,7 @@ const ipOf = req => String(req.headers['x-forwarded-for'] || req.socket.remoteAd
 const secure = req => req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
 const TYPES = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'application/javascript; charset=utf-8', png: 'image/png', webp: 'image/webp', jpg: 'image/jpeg', svg: 'image/svg+xml', ico: 'image/x-icon', txt: 'text/plain; charset=utf-8' };
 // public website: only these files / the img folder (never server code or package files)
-const SITE = new Set(['index.html', 'impressum.html', 'datenschutz.html', 'style.css', 'app.js', 'theme.js', 'robots.txt', 'aera.html', 'aera.css', 'aera.js', 'aera-changelog.html']);
+const SITE = new Set(['index.html', 'impressum.html', 'datenschutz.html', 'style.css', 'app.js', 'theme.js', 'robots.txt', 'aera.html', 'aera.css', 'aera.js', 'aera-changelog.html', 'beta-page.js']);
 const SITE_CSP = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'";
 function serveFile(res, file, cache, csp) {
   if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return send(res, 404, notFound(), TYPES.html);
@@ -186,6 +187,11 @@ http.createServer(async (req, res) => {
   const u = new URL(req.url, 'http://x'), p = u.pathname;
   try {
     if (p === '/healthz') return send(res, 200, 'ok', 'text/plain');
+    // beta area: own CSP so Discord avatars can load
+    if (req.method === 'GET' && (p === '/beta' || p.startsWith('/beta/') || p.startsWith('/api/beta/'))) {
+      const BETA_CSP = SITE_CSP.replace("img-src 'self' data:", "img-src 'self' data: https://cdn.discordapp.com");
+      if (await beta.handle(req, res, u, p, send, (r, f) => serveFile(r, f, 'no-cache', BETA_CSP), path.join(ROOT, 'beta.html'))) return;
+    }
     // dev-dsue.de is the main address (www.dev-dsue.de is forwarded there by the DNS provider)
     if (req.method === 'GET' || req.method === 'HEAD') {
       if (p === '/admin') { res.writeHead(301, { Location: '/admin/' }); return res.end(); }
