@@ -1,5 +1,87 @@
 [
  {
+  "version": "0.9.4",
+  "date": "2026-11-14",
+  "title": {
+   "de": "Coordination",
+   "en": "Coordination"
+  },
+  "sections": [
+   {
+    "kind": "new",
+    "items": [
+     {
+      "de": "Anflüge kommen von Langen Radar",
+      "en": "Arrivals are handed over by Langen Radar",
+      "sub": [
+       [
+        "erscheinen 17–25 NM vor deinem Sektor und sinken auf FL100",
+        "They appear 17–25 NM before your sector, descending to FL100"
+       ],
+       [
+        "melden sich erst, wenn sie in deinen Sektor einfliegen – 2–3 Minuten Zeit zum Planen",
+        "They only call you when entering your sector – 2–3 minutes to plan ahead"
+       ],
+       [
+        "vorher noch nicht auf deiner Frequenz, keine Antwort und keine Strafen",
+        "Before that they are not on your frequency – no replies and no penalties"
+       ]
+      ]
+     },
+     {
+      "de": "Koordination für Directs außerhalb deines Sektors",
+      "en": "Coordination for directs outside your sector",
+      "sub": [
+       [
+        "erst beim Nachbarn anrufen (📞 → Koordination), dann per Funk freigeben",
+        "Call the neighbour first (📞 → Coordination), then clear it on frequency"
+       ],
+       [
+        "der Nachbar genehmigt oder lehnt ab, je nach Verkehr",
+        "The neighbour approves or refuses, depending on traffic"
+       ],
+       [
+        "ohne Absprache −8 und ein Anruf vom Nachbarn",
+        "Without coordination −8 and an angry call from the neighbour"
+       ]
+      ]
+     },
+     {
+      "de": "Label-Einträge wie in echt",
+      "en": "Label entries like in real life",
+      "sub": [
+       [
+        "die Auswahlliste im Label schreibt nur ins Label, die Piloten hören das nicht",
+        "The pick list in the label only writes to the label – the pilots don't hear it"
+       ],
+       [
+        "Kurs und Speed als H250 und S210 im Label",
+        "Heading and speed shown as H250 and S210 in the label"
+       ],
+       [
+        "gelber Rahmen, wenn die eingetragene CFL nicht zur Freigabe passt",
+        "Amber frame when the entered CFL doesn't match the clearance"
+       ],
+       [
+        "Einstellung: manuell wie in echt oder automatisch aus dem Funk",
+        "Setting: manual like in real life or automatic from your radio calls"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "kind": "fix",
+    "items": [
+     {
+      "de": "Wegpunkte hinter dem Ende der Abflugroute waren per Direct nicht erreichbar („Fix unbekannt“)",
+      "en": "Waypoints beyond the end of the departure route could not be used for directs (\"unknown fix\")"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "version": "0.9.1",
   "date": "2026-11-13",
   "title": {
