@@ -183,6 +183,29 @@ const errText = e => {
   return m.slice(0, 200);
 };
 
+// ---------------- AERA Discord: member count for the AERA page ----------------
+// The link on the page is DISCORD_URL. Its invite code is looked up from that link (dsc.gg forwards to discord.com/invite/…),
+// then Discord's public invite API gives the member and online count. Cached for 5 minutes; no token needed.
+const DISCORD_URL = process.env.AERA_DISCORD_URL || 'https://dsc.gg/aera-atc';
+let dcCache = { t: 0, data: { url: DISCORD_URL } }, dcCode = process.env.AERA_DISCORD_INVITE || 'TDFzYhP7yt';
+async function discordStats() {
+  if (Date.now() - dcCache.t < 300000) return dcCache.data;
+  dcCache.t = Date.now();
+  try {
+    try {
+      const r = await fetch(DISCORD_URL, { redirect: 'manual', signal: AbortSignal.timeout(4000) });
+      const m = (r.headers.get('location') || '').match(/discord(?:app)?\.(?:com\/invite|gg)\/([\w-]+)/i);
+      if (m) dcCode = m[1];
+    } catch {}
+    const r = await fetch(`https://discord.com/api/v10/invites/${dcCode}?with_counts=true`, { signal: AbortSignal.timeout(4000) });
+    if (r.ok) {
+      const j = await r.json();
+      dcCache.data = { url: DISCORD_URL, name: j.guild && j.guild.name, members: j.approximate_member_count, online: j.approximate_presence_count };
+    }
+  } catch {}
+  return dcCache.data;
+}
+
 http.createServer(async (req, res) => {
   const u = new URL(req.url, 'http://x'), p = u.pathname;
   try {
@@ -204,6 +227,7 @@ http.createServer(async (req, res) => {
       if (p === '/aera/') { res.writeHead(301, { Location: '/aera' }); return res.end(); }
       if (p === '/aera') return serveFile(res, path.join(ROOT, 'aera.html'), 'no-cache', SITE_CSP);
       if (p === '/aera/changelog' || p === '/aera/changelog/') return serveFile(res, path.join(ROOT, 'aera-changelog.html'), 'no-cache', SITE_CSP);
+      if (p === '/aera/discord.json') return send(res, 200, await discordStats(), 'application/json', { 'Cache-Control': 'public, max-age=120', 'X-Robots-Tag': 'noindex' });
       const name = decodeURIComponent(p.slice(1));
       if (SITE.has(name)) return serveFile(res, path.join(ROOT, name), /\.html$/.test(name) ? 'no-cache' : 'public, max-age=3600', SITE_CSP);
       if (/^img\/[a-z0-9._-]+\.(png|webp|jpg|svg|ico)$/i.test(name)) return serveFile(res, path.join(ROOT, name), 'public, max-age=86400', SITE_CSP);
