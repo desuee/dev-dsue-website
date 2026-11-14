@@ -200,8 +200,17 @@
       }).join('') + '</ul><a class="btn ghost" href="/aera/changelog">' + (L === 'de' ? 'Kompletter Changelog' : 'Full changelog') + ' <span>→</span></a>';
   }
 
+  // Discord member count (server caches it; the card works without it too)
+  var dcBox = document.getElementById('dc-stats');
+  if (dcBox && window.fetch) fetch('/aera/discord.json').then(function (r) { return r.json(); }).then(function (d) {
+    if (!d || !d.members) return;
+    dcBox.querySelector('[data-dc=members]').textContent = d.members.toLocaleString('de-DE');
+    dcBox.querySelector('[data-dc=online]').textContent = (d.online || 0).toLocaleString('de-DE');
+    dcBox.hidden = false;
+  }).catch(function () {});
+
   // reveal on scroll
-  var els = document.querySelectorAll('.sec h2, .sec > .sub, .sector, .b, .road > li, .ea, .radio, details, .g, .wn');
+  var els = document.querySelectorAll('.sec h2, .sec > .sub, .sector, .b, .road > li, .ea, .radio, details, .g, .wn, .dc-card');
   if ('IntersectionObserver' in window && !still) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
