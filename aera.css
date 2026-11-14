@@ -364,3 +364,45 @@ mark{background:#f5b04155;color:#fff;border-radius:3px;padding:0 2px}
   .cl-latest{margin-left:0}
   .wn li{flex-direction:column;gap:6px}
 }
+
+/* ---------- Discord ---------- */
+.dc-ic{width:20px;height:20px;fill:currentColor;stroke:none}
+.nav-dc{display:flex;align-items:center;gap:7px;height:36px;padding:0 12px;border-radius:10px;text-decoration:none;font-size:13.5px;font-weight:650;color:#fff;background:#5865f2;transition:filter .2s,transform .2s}
+.nav-dc:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.nav-dc .dc-ic{width:18px;height:18px}
+.btn.dc{background:#5865f2;color:#fff;border:1px solid #5865f2;box-shadow:0 12px 30px #5865f240,inset 0 1px 0 #ffffff33}
+.btn.dc:hover{transform:translateY(-2px);box-shadow:0 16px 36px #5865f266,inset 0 1px 0 #ffffff33}
+.dc-card{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:40px;align-items:center;padding:46px 48px;border-radius:24px;overflow:hidden;text-decoration:none;color:var(--white);
+  background:linear-gradient(135deg,#1b2457,#101a3a 45%,#0b1d33);border:1px solid #5865f266;transition:transform .3s,box-shadow .3s,border-color .3s}
+.dc-card:hover{transform:translateY(-4px);border-color:#5865f2;box-shadow:0 40px 90px #0009,0 0 0 4px #5865f222}
+.dc-glow{position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#5865f255,transparent 65%);pointer-events:none}
+.dc-logo{position:relative;display:grid;place-items:center;width:120px;height:120px;border-radius:32px;background:#5865f2;box-shadow:0 20px 50px #5865f255}
+.dc-logo .dc-ic{width:68px;height:68px}
+.dc-copy{position:relative}
+.dc-copy h2{margin:0;font:700 clamp(30px,3.6vw,42px)/1.1 var(--head);letter-spacing:-.02em}
+.dc-copy>p:not(.eyebrow){margin:12px 0 0;color:var(--grey);font-size:16.5px;max-width:560px}
+.dc-list{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.dc-list li{padding:6px 12px;border-radius:999px;background:#ffffff0d;border:1px solid #5865f255;font-size:13.5px;font-weight:600;color:#dfe3ff}
+.dc-side{position:relative;display:grid;justify-items:center;gap:12px;text-align:center}
+.dc-stats{display:flex;gap:18px}
+.dc-stats[hidden]{display:none}
+.dc-stats span{display:grid;justify-items:center}
+.dc-stats b{font:700 30px var(--head);color:#fff}
+.dc-stats em{font-style:normal;font-size:12.5px;color:var(--muted)}
+.dc-stats .on b{display:flex;align-items:center;gap:8px}
+.dc-stats .on i{width:10px;height:10px;border-radius:50%;background:#23a55a;box-shadow:0 0 10px #23a55a}
+.dc-stats .on{grid-template-columns:auto auto;column-gap:8px}
+.dc-stats .on i{align-self:center}
+.dc-stats .on em{grid-column:1/-1}
+.btn.dc.big{height:54px;padding:0 26px;font-size:16.5px}
+.dc-side small{font:500 13px var(--mono);color:var(--muted)}
+.ea-tester{display:inline-block;margin-top:18px;color:var(--sky);font-size:14.5px;font-weight:600;text-decoration:none}
+.ea-tester:hover{text-decoration:underline}
+details p a{color:var(--sky)}
+@media (max-width:1060px){.nav-dc span{display:none}.nav-dc{width:36px;padding:0;justify-content:center}}
+@media (max-width:900px){
+  .dc-card{grid-template-columns:minmax(0,1fr);gap:24px;padding:32px 24px}
+  .dc-logo{width:84px;height:84px;border-radius:24px}
+  .dc-logo .dc-ic{width:48px;height:48px}
+  .dc-side{justify-items:start;text-align:left}
+}
